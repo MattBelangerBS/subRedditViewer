@@ -2,10 +2,23 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="">
+	<link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
-<body>
-YO
-<script type="text/javascript" src="js/vendor/reddit.js"></script>
+<body ng-app="subReddit">
+
+
+
+	<div ui-view name="content"></div>
+
+
+	<script type="text/javascript" src="js/vendor/angular.min.js"></script>
+	<script type="text/javascript" src="js/vendor/angular-ui-route.min.js"></script>
+	<script src="js/vendor/angular-animate.min.js"></script>
+ 	<script src="js/vendor/ui-bootstrap-tpls-0.14.2.min.js"></script>
+	<script type="text/javascript" src="js/vendor/reddit.js"></script>
+
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="js/controllers/main.ctrl.js"></script>
+
 </body>
 </html>

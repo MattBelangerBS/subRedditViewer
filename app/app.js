@@ -13,7 +13,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
         views: {
                 content: {
                     templateUrl: 'templates/home.html',
-                    controller: 'MainCtrl as Ctrl'
+                    controller: 'MainCtrl as ctrl'
                 }
 
         }  
