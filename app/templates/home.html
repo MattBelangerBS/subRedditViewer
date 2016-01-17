@@ -1,3 +1,17 @@
-<input type="text" ng-model="ctrl.dog">
+<input type="text" ng-model="ctrl.search">
 
-<p>{{ctrl.dog}}</p>
+
+<button ng-click="ctrl.click(ctrl.search)">Click me</button>
+
+
+	<div ng-repeat="thing in ctrl.test1">
+		<div ng-hide="thing.data.stickied">
+		<p>{{thing.data.score}}</p>
+		<p>	{{thing.data.title}}</p>
+			<a target="_blank" href="{{thing.data.url}}">{{thing.data.url}}</a>
+			<hr>
+		 </div>
+		
+	</div>
+
+
