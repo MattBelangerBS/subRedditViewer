@@ -2,16 +2,22 @@
 
 
 <button ng-click="ctrl.click(ctrl.search)">Click me</button>
+<button ng-click="ctrl.clearStorage()">Clear Saves</button>
 
-
-	<div ng-repeat="thing in ctrl.test1">
-		<div ng-hide="thing.data.stickied">
-		<p>{{thing.data.score}}</p>
-		<p>	{{thing.data.title}}</p>
-			<a target="_blank" href="{{thing.data.url}}">{{thing.data.url}}</a>
+<div class="container">
+	<div class="row">
+		<div class="col-md-3 col-sm-4 col-xs-6" ng-repeat="things in ctrl.fullList">
 			<hr>
-		 </div>
-		
+			<div ng-mouseover="ctrl.popUp(thing.data.thumbnail)" ng-repeat="thing in things">
+				<div ng-hide="thing.data.stickied">
+				<span>{{thing.data.score}}</span>
+				<span class="title">	{{thing.data.title}}</span>
+					<a target="_blank" href="{{thing.data.url}}"> Link </a>
+<!-- 					<img  ng-hide="thing.data.thumbnail == 'self'"class="thumb"src="{{thing.data.thumbnail}}"> -->
+				 </div>
+				
+			</div>
+		</div>
 	</div>
-
+</div>
 
