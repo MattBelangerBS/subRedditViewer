@@ -1,21 +1,27 @@
 <input type="text" ng-model="ctrl.search">
-
-
 <button ng-click="ctrl.click(ctrl.search)">Click me</button>
 <button ng-click="ctrl.clearStorage()">Clear Saves</button>
+<button ng-click="ctrl.clearStorage()">Refresh Subs</button>
+<button ng-click="ctrl.debug()">Debug</button>
+<button ng-click="ctrl.try()">Try</button>
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-3 col-sm-4 col-xs-6" ng-repeat="things in ctrl.fullList">
-			<hr>
-			<div ng-mouseover="ctrl.popUp(thing.data.thumbnail)" ng-repeat="thing in things">
+		<div class="col-md-3 col-sm-4 col-xs-6 content" ng-repeat="things in ctrl.fullList">
+		<hr>
+		<h4>{{things[0].data.subreddit}}
+			<i ng-click="ctrl.removeSub($index)" class="fa fa-times-circle"></i> 
+			<i ng-click="ctrl.refresh($index,things[0].data.subreddit)"class="fa fa-refresh"></i>
+		</h4>
+			<div ng-repeat="thing in things">
 				<div ng-hide="thing.data.stickied">
-				<span>{{thing.data.score}}</span>
-				<span class="title">	{{thing.data.title}}</span>
+					{{thing.data.score}}
 					<a target="_blank" href="{{thing.data.url}}"> Link </a>
-<!-- 					<img  ng-hide="thing.data.thumbnail == 'self'"class="thumb"src="{{thing.data.thumbnail}}"> -->
+					<a target="_blank" href="http://reddit.com{{thing.data.permalink}}"> Comments </a>
+					<div  popover-enable="(thing.data.thumbnail!='self')&&(thing.data.thumbnail!='')" popover-trigger="mouseenter" uib-popover="Click for thumbnail">
+						<span ng-click="ctrl.popUp(thing.data.thumbnail)" class="title">{{thing.data.title}}</span>
+					</div>
 				 </div>
-				
 			</div>
 		</div>
 	</div>
