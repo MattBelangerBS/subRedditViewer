@@ -1,9 +1,8 @@
-<input type="text" ng-model="ctrl.search">
+<input ng-keydown="$event.which === 13 && ctrl.click(ctrl.search)"type="text" ng-model="ctrl.search">
 <button ng-click="ctrl.click(ctrl.search)">Click me</button>
 <button ng-click="ctrl.clearStorage()">Clear Saves</button>
-<button ng-click="ctrl.clearStorage()">Refresh Subs</button>
 <button ng-click="ctrl.debug()">Debug</button>
-<button ng-click="ctrl.try()">Try</button>
+<button ng-click="ctrl.updateReddits(0)">Refresh All</button>
 
 <div class="container">
 	<div class="row">
@@ -11,7 +10,7 @@
 		<hr>
 		<h4>{{things[0].data.subreddit}}
 			<i ng-click="ctrl.removeSub($index)" class="fa fa-times-circle"></i> 
-			<i ng-click="ctrl.refresh($index,things[0].data.subreddit)"class="fa fa-refresh"></i>
+			<!-- <i ng-click="ctrl.refresh($index,things[0].data.subreddit)"class="fa fa-refresh"></i> -->
 		</h4>
 			<div ng-repeat="thing in things">
 				<div ng-hide="thing.data.stickied">
