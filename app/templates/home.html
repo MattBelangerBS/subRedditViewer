@@ -1,19 +1,26 @@
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <input  size="20" ng-keydown="$event.which === 13 && ctrl.click(ctrl.search)"type="text" ng-model="ctrl.search">
-            <button class="btn btn-primary"ng-click="ctrl.click(ctrl.search)">Click me</button>
-            <button class="btn btn-warning"ng-click="ctrl.clearStorage()">Clear Saves</button>
-            <button class="btn btn-danger"ng-click="ctrl.debug()">Debug</button>
-            <button class="btn btn-info"ng-click="ctrl.updateReddits(0)">Refresh All</button>
-            <input  maxlength="2" size="2" ng-model="ctrl.numResults" placeholder="Number of Results">
+        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+            <div class="inline">
+                <input  size="20" ng-keydown="$event.which === 13 && ctrl.click(ctrl.search)"type="text" ng-model="ctrl.search">
+                <button class="btn btn-primary"ng-click="ctrl.click(ctrl.search)">Get SubReddit</button>
+             </div>
+             <div class="inline">
+                <button class="btn btn-warning"ng-click="ctrl.clearStorage()">Clear Saves</button>
+                <!--<button class="btn btn-danger"ng-click="ctrl.debug()">Debug</button>-->
+                <button class="btn btn-info"ng-click="ctrl.updateReddits(0)">Refresh All</button>
+           	</div>
+               <div  class="inline">
+                   <label for="">Num of Results</label> 
+                   <input  maxlength="2" size="2" ng-model="ctrl.numResults" placeholder="Number of Results">
+            </div>
         </div>
     </div>
 </div>
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-3 col-sm-4 col-xs-12" ng-class="{'contentEven':($index +1)%2,'contentOdd':!(($index +1)%2)}" ng-repeat="things in ctrl.fullList">
+		<div class="col-xs-12 col-md-4 col-lg-3" ng-class="{'contentEven':($index +1)%2,'contentOdd':!(($index +1)%2)}" ng-repeat="things in ctrl.fullList">
 		
 		<h4 class="header">{{things[0].data.subreddit}}
 			<i ng-click="ctrl.removeSub($index)" class="fa fa-times-circle"></i> 

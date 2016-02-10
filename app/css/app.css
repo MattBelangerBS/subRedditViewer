@@ -18,7 +18,7 @@ span{
 }
 
 .reddits{
-    height:350px;
+    height:500px;
 	overflow: scroll;
 }
 .header{
@@ -46,4 +46,11 @@ i{
 }
 .contentOdd{
     background-color:#4DE89B;
+}
+.container{
+    margin-top:10px;
+}
+.inline{
+    padding:5px 0px;
+    display: inline-block;
 }
