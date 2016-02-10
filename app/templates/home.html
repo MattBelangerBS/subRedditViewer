@@ -1,28 +1,36 @@
-<input ng-keydown="$event.which === 13 && ctrl.click(ctrl.search)"type="text" ng-model="ctrl.search">
-<button class="btn btn-primary"ng-click="ctrl.click(ctrl.search)">Click me</button>
-<button class="btn btn-warning"ng-click="ctrl.clearStorage()">Clear Saves</button>
-<button class="btn btn-danger"ng-click="ctrl.debug()">Debug</button>
-<button class="btn btn-info"ng-click="ctrl.updateReddits(0)">Refresh All</button>
-<input ng-model="ctrl.numResults" placeholder="Number of Results">
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <input  size="20" ng-keydown="$event.which === 13 && ctrl.click(ctrl.search)"type="text" ng-model="ctrl.search">
+            <button class="btn btn-primary"ng-click="ctrl.click(ctrl.search)">Click me</button>
+            <button class="btn btn-warning"ng-click="ctrl.clearStorage()">Clear Saves</button>
+            <button class="btn btn-danger"ng-click="ctrl.debug()">Debug</button>
+            <button class="btn btn-info"ng-click="ctrl.updateReddits(0)">Refresh All</button>
+            <input  maxlength="2" size="2" ng-model="ctrl.numResults" placeholder="Number of Results">
+        </div>
+    </div>
+</div>
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-3 col-sm-4 col-xs-6 content" ng-repeat="things in ctrl.fullList">
-		<hr>
-		<h4>{{things[0].data.subreddit}}
+		<div class="col-md-3 col-sm-4 col-xs-12" ng-class="{'contentEven':($index +1)%2,'contentOdd':!(($index +1)%2)}" ng-repeat="things in ctrl.fullList">
+		
+		<h4 class="header">{{things[0].data.subreddit}}
 			<i ng-click="ctrl.removeSub($index)" class="fa fa-times-circle"></i> 
 			<!-- <i ng-click="ctrl.refresh($index,things[0].data.subreddit)"class="fa fa-refresh"></i> -->
 		</h4>
-			<div ng-repeat="thing in things">
-				<div ng-hide="thing.data.stickied">
-					{{thing.data.score}}
-					<a target="_blank" href="{{thing.data.url}}"> Link </a>
-					<a target="_blank" href="http://reddit.com{{thing.data.permalink}}"> Comments </a>
-					<div  popover-enable="(thing.data.thumbnail!='self')&&(thing.data.thumbnail!='')" popover-trigger="mouseenter" uib-popover="Click for thumbnail">
-						<span ng-click="ctrl.popUp(thing.data.thumbnail)" class="title">{{thing.data.title}}</span>
-					</div>
-				 </div>
-			</div>
+	       <div class="reddits">
+                <div ng-repeat="thing in things">
+                    <div ng-hide="thing.data.stickied">
+                        {{thing.data.score}}
+                        <a target="_blank" href="{{thing.data.url}}"> Link </a>
+                        <a target="_blank" href="http://reddit.com{{thing.data.permalink}}"> Comments </a>
+                        <div  popover-enable="(thing.data.thumbnail!='self')&&(thing.data.thumbnail!='')" popover-trigger="mouseenter" uib-popover="Click for thumbnail">
+                            <span ng-click="ctrl.popUp(thing.data.thumbnail)" class="title">{{thing.data.title}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div> 
 		</div>
 	</div>
 </div>

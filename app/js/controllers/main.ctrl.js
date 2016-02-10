@@ -11,7 +11,7 @@ function MainCtrl($state,$q,$scope,contentService,$uibModal,apiSrv){
 	this.test2
 	this.contentService = contentService;
 	this.subReddits = [];
-    this.numResults = 5;
+    this.numResults = 10;
     
 	if(localStorage.savedReddits){
 		this.fullList = JSON.parse(localStorage.savedReddits);
