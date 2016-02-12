@@ -20,6 +20,7 @@ span{
 .reddits{
     height:500px;
 	overflow: scroll;
+    text-align: left;
 }
 .header{
     position: relative;
@@ -31,7 +32,7 @@ span{
    
 }
 
-i:hover{
+i.fa-times-circle:hover{
 	cursor: pointer;
 }
 i{
@@ -41,16 +42,48 @@ i{
 	width: 100%;
 	height: 100%;
 }
-.contentEven{
-    background-color: #55C7FF;
-}
-.contentOdd{
-    background-color:#4DE89B;
-}
+
 .container{
+    position: relative;
+    top:50px;
     margin-top:10px;
+    text-align:center;
 }
 .inline{
-    padding:5px 0px;
+    padding-top: 5px;
     display: inline-block;
+}
+.text-center{
+    text-align: center;
+}
+
+.navbar-fixed-top{
+    position: fixed;
+    top: 0;
+    transition: top 0.5s ease-in-out;
+
+}
+.min{
+   top:-100px;
+   
+}
+
+.min2{
+   top:-500px;
+   transition: top 1s ease-in-out;
+   
+}
+
+.navbar-default{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffaf4b+0,ff920a+100;Orange+3D+%231 */
+background: #ffaf4b; /* Old browsers */
+background: -moz-linear-gradient(top,  #ffaf4b 0%, #ff920a 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #ffaf4b 0%,#ff920a 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #ffaf4b 0%,#ff920a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4b', endColorstr='#ff920a',GradientType=0 ); /* IE6-9 */
+
+}
+
+.panel-body {
+    padding-top:0;
 }

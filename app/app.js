@@ -1,25 +1,25 @@
+(function(){
 var app = angular.module('subReddit', ['ui.router','ui.bootstrap','ngAnimate']);
 
+    app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
 
+        $urlRouterProvider.otherwise('/home');
 
-app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
+        $stateProvider
 
-    $urlRouterProvider.otherwise('/home');
+        .state('home', {
+            url: '/home',
+            views: {
+                    // nav: {
+                    //     templateUrl: 'templates/nav.html',
+                    //     controller: 'MainCtrl as ctrl'
+                    // },
+                    content: {
+                        templateUrl: 'templates/home.html',
+                        controller: 'MainCtrl as ctrl'
+                    }
+            }  
+        })
+    });
 
-    $stateProvider
-
-    .state('home', {
-        url: '/home',
-        views: {
-                content: {
-                    templateUrl: 'templates/home.html',
-                    controller: 'MainCtrl as ctrl'
-                }
-
-        }  
-
-    })
-
-});
-
-
+})();

@@ -1,7 +1,11 @@
-app.service('contentService',contentService);
+(function() {
+    
+    angular.module('subReddit')
+        .service('contentService',contentService);
 
-function contentService(){
+    function contentService(){
+        this.hoverImage;
+        //this.search;
+    }
 
-	this.hoverImage;
-
-}
+})();
