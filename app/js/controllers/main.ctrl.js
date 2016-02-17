@@ -1,5 +1,6 @@
 
 (function() {
+    'use strict';
     
     angular
         .module('subReddit')
@@ -31,7 +32,7 @@
     MainCtrl.prototype.click = function(search) {
         var that = this;
         var bool = false;
-        for(i=0;i<that.subReddits.length;i++){
+        for(var i=0;i<that.subReddits.length;i++){
 
             if(that.subReddits[i]===search){
                 bool = true;	
