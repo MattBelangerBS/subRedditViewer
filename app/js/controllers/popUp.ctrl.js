@@ -3,17 +3,21 @@
     
     angular
         .module('subReddit')
-        .controller('popCtrl',popCtrl);
+        .controller('popCtrl',PopCtrl);
 
-    function popCtrl($state,$q,$scope,contentService,$modalInstance){
-        this.$modalInstance = $modalInstance;
-        this.contentService = contentService;
-        this.image = this.contentService.hoverImage;
+    function PopCtrl($state,$q,$scope,contentService,$modalInstance){
+        var ctrl = this;
+        
+        ctrl.$modalInstance = $modalInstance;
+        ctrl.contentService = contentService;
+        ctrl.image = ctrl.contentService.hoverImage;
 	        
     }
 
-    popCtrl.prototype.closeMod = function () {
-                this.$modalInstance.close();
+    PopCtrl.prototype.closeMod = function () {
+        var ctrl = ctrl;
+        
+        ctrl.$modalInstance.close();
             
 };
   

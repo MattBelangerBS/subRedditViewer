@@ -6,6 +6,7 @@
         .controller('NavCtrl',NavCtrl);
 
     function NavCtrl($state,$q,$scope,contentService){
+        var ctrl = this;
         
     }
 

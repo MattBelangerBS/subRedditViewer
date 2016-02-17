@@ -3,10 +3,12 @@
     
     angular
         .module('subReddit')
-        .service('contentService',contentService);
+        .service('contentService',ContentService);
 
-    function contentService(){
-        this.hoverImage;
+    function ContentService(){
+        var ctrl = this;
+        
+        ctrl.hoverImage;
     }
 
 })();

@@ -3,9 +3,9 @@
     
     angular
         .module('subReddit')
-        .directive("scroll",scroll); 
+        .directive("scroll",Scroll); 
             
-    function scroll ($window) {
+    function Scroll ($window) {
         return function(scope, element, attrs) {
             angular.element($window).bind("scroll", function() {
                 if (this.pageYOffset > this.lastScrollTop) {

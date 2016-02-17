@@ -3,17 +3,21 @@
     
     angular
         .module('subReddit')
-        .service('apiSrv',apiSrv);
+        .service('apiSrv',ApiSrv);
 
-    function apiSrv($http){
-        this.http = $http;
-        this.BASEURL= "http://reddit.com/r/";
-        this.ENDPOINT= "/.json";
+    function ApiSrv($http){
+        var ctrl = this;
+        
+        ctrl.http = $http;
+        ctrl.BASEURL= "http://reddit.com/r/";
+        ctrl.ENDPOINT= "/.json";
         
     }
 
-    apiSrv.prototype.getRequest = function(sub) {
-            return this.http.get(this.BASEURL + sub+ this.ENDPOINT);  
+    ApiSrv.prototype.getRequest = function(sub) {
+        var ctrl = ctrl;
+        
+        return ctrl.http.get(ctrl.BASEURL + sub+ ctrl.ENDPOINT);  
     }
 
 })();
