@@ -1,7 +1,11 @@
 (function(){
-var app = angular.module('subReddit', ['ui.router','ui.bootstrap','ngAnimate']);
+    angular.module('subReddit', [
+        'ui.router',
+        'ui.bootstrap',
+        'ngAnimate'
+    ]);
 
-    app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
+     angular.module('subReddit').config(function($stateProvider, $httpProvider, $urlRouterProvider) {
 
         $urlRouterProvider.otherwise('/home');
 

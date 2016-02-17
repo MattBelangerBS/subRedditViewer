@@ -1,6 +1,7 @@
 (function() {
     
-    angular.module('subReddit')
+    angular
+        .module('subReddit')
         .controller('NavCtrl',NavCtrl);
 
     function NavCtrl($state,$q,$scope,contentService){

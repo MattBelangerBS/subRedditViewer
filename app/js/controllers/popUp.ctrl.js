@@ -1,6 +1,7 @@
 (function() {
     
-    angular.module('subReddit')
+    angular
+        .module('subReddit')
         .controller('popCtrl',popCtrl);
 
     function popCtrl($state,$q,$scope,contentService,$modalInstance){

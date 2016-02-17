@@ -1,6 +1,7 @@
 (function() {
     
-    angular.module('subReddit')
+    angular
+        .module('subReddit')
         .service('apiSrv',apiSrv);
 
     function apiSrv($http){

@@ -1,7 +1,8 @@
 
 (function() {
     
-    angular.module('subReddit')
+    angular
+        .module('subReddit')
         .controller('MainCtrl',MainCtrl);
 
     function MainCtrl($state,$q,$scope,contentService,$uibModal,apiSrv){

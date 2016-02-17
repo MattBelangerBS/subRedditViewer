@@ -1,11 +1,11 @@
 (function() {
     
-    angular.module('subReddit')
+    angular
+        .module('subReddit')
         .service('contentService',contentService);
 
     function contentService(){
         this.hoverImage;
-        //this.search;
     }
 
 })();
