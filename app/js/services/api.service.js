@@ -3,20 +3,22 @@
     
     angular
         .module('subReddit')
-        .service('apiSrv',ApiSrv);
+        .service('ApiSrv',ApiSrv);
 
-    function ApiSrv($http){
-        var ctrl = this;
+    ApiSrv.$inject = ['$http'];
+    
+    function ApiSrv($http){     
+        var BASEURL = "http://reddit.com/r/";
+        var ENDPOINT = "/.json";
         
-        ctrl.http = $http;
-        ctrl.BASEURL= "http://reddit.com/r/";
-        ctrl.ENDPOINT= "/.json";
+        var service = {
+            getRequest : getRequest
+        }
+        return service;
         
-        ctrl.getRequest = getRequest;
-        
+        //////////////////
         function getRequest(sub) {
-             var ctrl = ctrl;
-            return ctrl.http.get(ctrl.BASEURL + sub+ ctrl.ENDPOINT);   
+            return $http.get(ctrl.BASEURL + sub+ ctrl.ENDPOINT);   
         }
     }
 

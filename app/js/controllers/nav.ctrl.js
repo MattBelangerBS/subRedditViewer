@@ -5,8 +5,9 @@
         .module('subReddit')
         .controller('NavCtrl',NavCtrl);
 
-    function NavCtrl($state,$q,$scope,contentService){
-        var ctrl = this;
+    NavCtrl.$inject = ['$state','$scope','contentService'];
+       
+    function NavCtrl($state,$scope,contentService){
         
     }
 

@@ -5,10 +5,10 @@
         .module('subReddit')
         .service('contentService',ContentService);
 
-    function ContentService(){
-        var ctrl = this;
-        
-        ctrl.hoverImage;
+    ContentService.$inject = ['ApiSrv'];
+    
+    function ContentService(ApiSrv){
+        var hoverImage;
     }
 
 })();

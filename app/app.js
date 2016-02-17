@@ -5,27 +5,31 @@
         'ui.router',
         'ui.bootstrap',
         'ngAnimate'
-    ]);
+        ])
+        .config(config);
 
-     angular.module('subReddit').config(function($stateProvider, $httpProvider, $urlRouterProvider) {
+        config.$inject = ['$stateProvider', '$httpProvider', '$urlRouterProvider'];
+        
+        function config($stateProvider, $httpProvider, $urlRouterProvider) {
 
-        $urlRouterProvider.otherwise('/home');
+            $urlRouterProvider.otherwise('/home');
 
-        $stateProvider
+            $stateProvider
 
-        .state('home', {
-            url: '/home',
-            views: {
-                    // nav: {
-                    //     templateUrl: 'templates/nav.html',
-                    //     controller: 'MainCtrl as ctrl'
-                    // },
-                    content: {
-                        templateUrl: 'templates/home.html',
-                        controller: 'MainCtrl as ctrl'
-                    }
-            }  
-        })
-    });
+            .state('home', {
+                url: '/home',
+                views: {
+                        // nav: {
+                        //     templateUrl: 'templates/nav.html',
+                        //     controller: 'MainCtrl as ctrl'
+                        // },
+                        content: {
+                            templateUrl: 'templates/home.html',
+                            controller: 'MainCtrl',
+                            controllerAs: 'ctrl'
+                        }
+                }  
+            })
+        };
 
 })();
