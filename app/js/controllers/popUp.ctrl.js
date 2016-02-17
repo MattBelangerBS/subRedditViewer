@@ -11,14 +11,14 @@
         ctrl.$modalInstance = $modalInstance;
         ctrl.contentService = contentService;
         ctrl.image = ctrl.contentService.hoverImage;
+        
+        ctrl.closeMod = closeMod;
+        
+        function closeMod() {
+            var ctrl = this;;
+            ctrl.$modalInstance.close();
+        }
 	        
     }
-
-    PopCtrl.prototype.closeMod = function () {
-        var ctrl = ctrl;
-        
-        ctrl.$modalInstance.close();
-            
-};
   
 })();

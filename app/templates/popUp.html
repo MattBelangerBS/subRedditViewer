@@ -1,1 +1,7 @@
-<img class="popImg" ng-src="{{ctrl.image}}">
+<img 
+    class="popImg" 
+    ng-click="ctrl.closeMod()"
+    popover-trigger="mouseenter"
+    popover-placement = "bottom" 
+    uib-popover="Click to Close" 
+    ng-src="{{ctrl.image}}">
