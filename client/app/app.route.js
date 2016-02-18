@@ -1,11 +1,7 @@
 (function(){
     'use strict';
     
-    angular.module('subReddit', [
-        'ui.router',
-        'ui.bootstrap',
-        'ngAnimate'
-        ])
+    angular.module('subReddit')
         .config(config);
 
         config.$inject = ['$stateProvider', '$httpProvider', '$urlRouterProvider'];
@@ -24,12 +20,19 @@
                         //     controller: 'MainCtrl as ctrl'
                         // },
                         content: {
-                            templateUrl: 'templates/home.html',
-                            controller: 'MainCtrl',
+                            templateUrl: 'app/home/home.html',
+                            controller: 'HomeCtrl',
                             controllerAs: 'ctrl'
                         }
+                },
+                resolve: {
+                    redditPrep: redditPrep
                 }  
             })
         };
+        
+        function redditPrep() {
+            return 'reddit';
+        }
 
 })();

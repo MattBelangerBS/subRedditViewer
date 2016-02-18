@@ -4,13 +4,13 @@
     
     angular
         .module('subReddit')
-        .controller('MainCtrl',MainCtrl);
+        .controller('HomeCtrl',HomeCtrl);
     
-    MainCtrl.$inject = ['$state','$scope','contentService','$uibModal','ApiSrv'];
+    HomeCtrl.$inject = ['$state','$scope','contentService','$uibModal','ApiSrv','redditPrep'];
     
-    function MainCtrl($state,$scope,contentService,$uibModal,ApiSrv){
+    function HomeCtrl($state,$scope,contentService,$uibModal,ApiSrv,redditPrep){
         var ctrl = this;
-        
+        console.log(redditPrep);
         //injectables
         ctrl.$uibModal = $uibModal;
         ctrl.contentService = contentService;
