@@ -76,7 +76,7 @@
                 ctrl.$uibModal
                     .open({
                         animation: true,
-                        templateUrl: 'popUp/popUp.html',
+                        templateUrl: '../popUp/popUp.html',
                         controller: 'PopCtrl',
                         controllerAs: 'ctrl',
                         size: "sm"
