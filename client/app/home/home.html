@@ -1,5 +1,5 @@
 
-    <nav class="navbar navbar-default navbar-fixed-top" scroll id="page" ng-class="{min:boolChangeClass, min2:boolChangeClass&&!isCollapsed}">
+<nav class="navbar navbar-default navbar-fixed-top" scroll id="page" ng-class="{min:boolChangeClass, min2:boolChangeClass&&!isCollapsed}">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed">
@@ -10,24 +10,27 @@
             </button>
        </div>
         <div class="navbar-collapse" ng-class="{collapse: isCollapsed}">
-            <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-                <input  size="20" ng-keydown="$event.which === 13 && ctrl.click(ctrl.search)"type="text"  class="form-control" ng-model="ctrl.search">
+            <form ng-submit="ctrl.click(ctrl.search)"class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input  size="20" type="text"  placeholder="Enter Subreddit Name"class="form-control" ng-model="ctrl.search" required>
+                </div>
+                <button class="btn btn-primary" >Get SubReddit</button>
+            </form>
+        
+            <div class="navbar-form">
+                <button class="btn btn-danger"ng-click="ctrl.clearStorage()">Clear Saves</button>
+                <button class="btn btn-info"ng-click="ctrl.updateReddits(0)">Refresh All</button>
+                <div class="navbar-form navbar-nav navbar-right">
+                    <label for="">Num of Results</label> 
+                    <input class="form-control" maxlength="2" maxlength="1" size="2" ng-model="ctrl.numResults" placeholder="Number of Results">
+                </div>
             </div>
-            <button class="btn btn-primary" ng-click="ctrl.click(ctrl.search)">Get SubReddit</button>
-        </form>
-       
-        <div class="navbar-form">
-            <button class="btn btn-danger"ng-click="ctrl.clearStorage()">Clear Saves</button>
-            <button class="btn btn-info"ng-click="ctrl.updateReddits(0)">Refresh All</button>
-        <div class="nav navbar-nav navbar-right">
-            <label for="">Num of Results</label> 
-            <input class="form-control" maxlength="2" maxlength="1" size="2" ng-model="ctrl.numResults" placeholder="Number of Results">
-        </div>
-        </div>
         </div>
     </div>
-    </nav>
+</nav>
+
+
+
 
 <div class="container">
 	<div class="row">

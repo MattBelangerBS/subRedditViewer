@@ -16,7 +16,7 @@
                 url: '/home',
                 views: {
                         // nav: {
-                        //     templateUrl: 'templates/nav.html',
+                        //     templateUrl: 'app/layout/nav.html',
                         //     controller: 'MainCtrl as ctrl'
                         // },
                         content: {
