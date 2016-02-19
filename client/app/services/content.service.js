@@ -9,7 +9,6 @@
     
     function ContentService($q,ApiSrv){
         var hoverImage;
-        var numResults = 10;
         
         var service = {
             redditGet : redditGet,
@@ -17,12 +16,12 @@
         }
         return service;
         
-        
-        function redditGet(search) {
+        /////////////////////////////////////
+        function redditGet(search,num) {
             var ctrl = this;
             var deferred = $q.defer();
                          
-           reddit.hot(search).limit(numResults)
+           reddit.hot(search).limit(num)
            .fetch(function (res) {
                var data = res.data.children;
                 deferred.resolve(data);
@@ -31,11 +30,11 @@
             return deferred.promise;
         }
         
-        function updateReddits(subreddit) {
+        function updateReddits(subreddit,num) {
              var ctrl = this;
              var deferred = $q.defer();
              
-             reddit.hot(subreddit).limit(numResults)
+             reddit.hot(subreddit).limit(num)
                 .fetch(function(res){
                    var data = res.data.children;
                     deferred.resolve(data);
@@ -43,8 +42,6 @@
              
             return deferred.promise;
         }
-        
-         
         
     }
 

@@ -14,6 +14,7 @@
         
         ctrl.closeMod = closeMod;
         
+        //////////////////////////////////////////////
         function closeMod() {
             var ctrl = this;;
             $modalInstance.close();

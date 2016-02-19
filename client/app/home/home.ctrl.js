@@ -22,7 +22,7 @@
         ctrl.fullList=[];
         ctrl.$scope = $scope;
         ctrl.subReddits = [];
-        ctrl.numResults = ctrl.contentService.numResults;
+        ctrl.numResults = 10;
         
         // functions
         ctrl.click = click;
@@ -31,10 +31,11 @@
         ctrl.removeSub = removeSub;
         ctrl.updateReddits = updateReddits;
         
-        $scope.$watch(' ctrl.numResults', function(current, original) {
-            ctrl.contentService.numResults = current;
-            console.log("yo");
-        });
+        // $scope.$watch(' ctrl.numResults', function(current, original) {
+        //     console.log(current);
+        //     ctrl.contentService.numResults = current;
+        //     console.log("yo");
+        // });
         
        //init function calls
         activate();
@@ -62,7 +63,7 @@
             if(!bool){
                 ctrl.subReddits.push(search);
                 console.log(ctrl.subReddits);
-                ctrl.contentService.redditGet(search)
+                ctrl.contentService.redditGet(search,ctrl.numResults)
                 .then(function (data) {
                     console.log(data);
                     var temp = data;
@@ -96,25 +97,6 @@
             }
         }
         
-        // function redditGet(search) {
-        //     var ctrl = this;
-
-        //     reddit.hot(search).limit(ctrl.numResults)
-        //         .fetch(function(res) {
-        //         // res contains JSON parsed response from Reddit
-        //             console.log(res);
-        //             var temp = res.data.children;
-        //             ctrl.fullList.push(temp);
-        //             console.log(temp);
-        //             ctrl.$scope.$apply()
-        //             //set localsotrage
-        //             localStorage.subReddits = JSON.stringify(ctrl.subReddits);
-        //             localStorage.savedReddits = JSON.stringify(ctrl.fullList);
-        //             console.log(ctrl.fullList);
-        //             ctrl.search = "";
-        //         });
-        // }
-        
         function clearStorage() {
             localStorage.clear();
         }
@@ -127,25 +109,27 @@
             
             localStorage.savedReddits = JSON.stringify(ctrl.fullList);
             localStorage.subReddits = JSON.stringify(ctrl.subReddits);
+            console.log(ctrl.subReddits);
         }
         
         function updateReddits(index) {
             var ctrl = this;
             ctrl.index = index;
             
-            ctrl.contentService.updateReddits(ctrl.subReddits[ctrl.index])
+            ctrl.contentService.updateReddits(ctrl.subReddits[ctrl.index],ctrl.numResults)
                 .then(function(res){
                     var temp = res;
                     
                     for(var i = 0; i < temp.length;i++){
-                        ctrl.fullList[ctrl.index][i].data = temp[i].data;
-                    }
+                        if((ctrl.fullList[ctrl.index][i])){
+                            ctrl.fullList[ctrl.index][i].data = temp[i].data;
+                        }
+                    }   
                     
                     localStorage.savedReddits = JSON.stringify(ctrl.fullList);
-                        
+                        console.log((ctrl.index+1)+ " reddit updated!" )
                     if((ctrl.index+1) < ctrl.subReddits.length){
                         ctrl.index = ctrl.index+1;
-                        console.log((ctrl.index+1)+ " reddit updated!" )
                         ctrl.updateReddits(ctrl.index);
                     }
               });
