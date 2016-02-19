@@ -22,20 +22,19 @@
         ctrl.fullList=[];
         ctrl.$scope = $scope;
         ctrl.subReddits = [];
-        ctrl.numResults = 10;
+        ctrl.numResults = ctrl.contentService.numResults;
         
         // functions
-       // ctrl.activate = activate;
         ctrl.click = click;
         ctrl.popUp = popUp;
-        ctrl.redditGet = redditGet;
         ctrl.clearStorage = clearStorage;
         ctrl.removeSub = removeSub;
         ctrl.updateReddits = updateReddits;
-        // $scope.$watch('ctrl.fullList', function(current, original) {
-        //     $log.info('ctrl.fullList was %s', original);
-       	//     $log.info('ctrl.fullList is now %s', current);
-        // });
+        
+        $scope.$watch(' ctrl.numResults', function(current, original) {
+            ctrl.contentService.numResults = current;
+            console.log("yo");
+        });
         
        //init function calls
         activate();
@@ -63,8 +62,21 @@
             if(!bool){
                 ctrl.subReddits.push(search);
                 console.log(ctrl.subReddits);
-                ctrl.redditGet(search);
-            }
+                ctrl.contentService.redditGet(search)
+                .then(function (data) {
+                    console.log(data);
+                    var temp = data;
+                    ctrl.fullList.push(temp);
+                    console.log(temp);
+                   // ctrl.$scope.$apply()
+                    //set localsotrage
+                    localStorage.subReddits = JSON.stringify(ctrl.subReddits);
+                    localStorage.savedReddits = JSON.stringify(ctrl.fullList);
+                    console.log(ctrl.fullList);
+                    ctrl.search = "";
+                });                   
+            };
+            
         }
         
         
@@ -84,24 +96,24 @@
             }
         }
         
-        function redditGet(search) {
-            var ctrl = this;
+        // function redditGet(search) {
+        //     var ctrl = this;
 
-            reddit.hot(search).limit(ctrl.numResults)
-                .fetch(function(res) {
-                // res contains JSON parsed response from Reddit
-                    console.log(res);
-                    var temp = res.data.children;
-                    ctrl.fullList.push(temp);
-                    console.log(temp);
-                    ctrl.$scope.$apply()
-                    //set localsotrage
-                    localStorage.subReddits = JSON.stringify(ctrl.subReddits);
-                    localStorage.savedReddits = JSON.stringify(ctrl.fullList);
-                    console.log(ctrl.fullList);
-                    ctrl.search = "";
-                });
-        }
+        //     reddit.hot(search).limit(ctrl.numResults)
+        //         .fetch(function(res) {
+        //         // res contains JSON parsed response from Reddit
+        //             console.log(res);
+        //             var temp = res.data.children;
+        //             ctrl.fullList.push(temp);
+        //             console.log(temp);
+        //             ctrl.$scope.$apply()
+        //             //set localsotrage
+        //             localStorage.subReddits = JSON.stringify(ctrl.subReddits);
+        //             localStorage.savedReddits = JSON.stringify(ctrl.fullList);
+        //             console.log(ctrl.fullList);
+        //             ctrl.search = "";
+        //         });
+        // }
         
         function clearStorage() {
             localStorage.clear();
@@ -120,20 +132,20 @@
         function updateReddits(index) {
             var ctrl = this;
             ctrl.index = index;
-
-            reddit.hot(ctrl.subReddits[ctrl.index]).limit(5)
-                .fetch(function(res){
-                    var temp = res.data.children;
+            
+            ctrl.contentService.updateReddits(ctrl.subReddits[ctrl.index])
+                .then(function(res){
+                    var temp = res;
                     
                     for(var i = 0; i < temp.length;i++){
                         ctrl.fullList[ctrl.index][i].data = temp[i].data;
                     }
                     
-                    ctrl.$scope.$apply()
                     localStorage.savedReddits = JSON.stringify(ctrl.fullList);
                         
                     if((ctrl.index+1) < ctrl.subReddits.length){
                         ctrl.index = ctrl.index+1;
+                        console.log((ctrl.index+1)+ " reddit updated!" )
                         ctrl.updateReddits(ctrl.index);
                     }
               });
