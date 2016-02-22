@@ -12,10 +12,6 @@ h1 {
 	display: block;
 
 }
-span{
-	display: inherit;
-	overflow: scroll;
-}
 
 .reddits{
     height:500px;
