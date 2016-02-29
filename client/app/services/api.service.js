@@ -22,8 +22,7 @@
                 .then(getComplete)
                 .catch(getFail);
                 
-                
-                
+
                 function getComplete(data, status, headers, config) {
                     return data.data;
                 }
@@ -34,7 +33,6 @@
                         newMessage = newMessage + '\n' + e.data.description;
                     }
                     e.data.description = newMessage;
-                    logger.error(newMessage);
                     return $q.reject(e);
                 }
         }

@@ -1,5 +1,5 @@
 
-<!--<nav class="navbar navbar-default navbar-fixed-top" scroll  id="page" ng-class="{min:boolChangeClass, min2:boolChangeClass&&!isCollapsed}">
+<nav class="navbar navbar-default navbar-fixed-top" scroll  id="page" ng-class="{min:boolChangeClass, min2:boolChangeClass&&!isCollapsed}">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed">
@@ -10,7 +10,7 @@
             </button>
        </div>
         <div class="navbar-collapse" ng-class="{collapse: isCollapsed}">
-            <form ng-submit="ctrl.click(ctrl.search)"class="navbar-form navbar-left" role="search">
+            <form ng-submit="ctrl.getReddit(ctrl.search)"class="navbar-form navbar-left" role="search">
                 <div class="form-group">
                     <input  size="20" type="text"  placeholder="Enter Subreddit Name"class="form-control" ng-model="ctrl.search" required>
                 </div>
@@ -27,5 +27,5 @@
             </div>
         </div>
     </div>
-</nav>-->
+</nav>
 

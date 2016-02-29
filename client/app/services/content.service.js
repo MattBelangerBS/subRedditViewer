@@ -5,25 +5,19 @@
         .module('subReddit')
         .service('contentService',ContentService);
 
-    ContentService.$inject = ['$q','ApiSrv'];
+    ContentService.$inject = ['$q'];
     
-    function ContentService($q,ApiSrv){
+    function ContentService($q){
         var hoverImage;
         
-        var service = {
-            redditGet : redditGet,
-            updateReddits : updateReddits
-        }
-        return service;
-        
+       
         /////////////////////////////////////
         function redditGet(search,num) {
-            var ctrl = this;
             var deferred = $q.defer();
                          
            reddit.hot(search).limit(num)
            .fetch(function (res) {
-               var data = res.data.children;
+                var data = res.data.children;
                 deferred.resolve(data);
            })
                 
@@ -31,7 +25,6 @@
         }
         
         function updateReddits(subreddit,num) {
-             var ctrl = this;
              var deferred = $q.defer();
              
              reddit.hot(subreddit).limit(num)
@@ -42,6 +35,13 @@
              
             return deferred.promise;
         }
+        
+         var service = {
+            redditGet : redditGet,
+            updateReddits : updateReddits,
+        }
+        return service;
+        
         
     }
 

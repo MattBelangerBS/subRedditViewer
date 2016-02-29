@@ -15,24 +15,14 @@
             .state('home', {
                 url: '/home',
                 views: {
-                        // nav: {
-                        //     templateUrl: 'app/layout/nav.html',
-                        //     controller: 'MainCtrl as ctrl'
-                        // },
+                        nav: {
+                            template: '<redditnav></redditnav>'
+                        },
                         content: {
-                            templateUrl: 'app/home/home.html',
-                            controller: 'HomeCtrl',
-                            controllerAs: 'ctrl'
+                             template:'<home></home>'
                         }
-                },
-                resolve: {
-                    redditPrep: redditPrep
-                }  
-            })
+                }
+            });
         };
-        
-        function redditPrep() {
-            return 'reddit';
-        }
-
+       
 })();

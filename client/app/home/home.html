@@ -1,40 +1,9 @@
-
-<nav class="navbar navbar-default navbar-fixed-top" scroll  id="page" ng-class="{min:boolChangeClass, min2:boolChangeClass&&!isCollapsed}">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed">
-            <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-       </div>
-        <div class="navbar-collapse" ng-class="{collapse: isCollapsed}">
-            <form ng-submit="ctrl.click(ctrl.search)"class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                    <input  size="20" type="text"  placeholder="Enter Subreddit Name"class="form-control" ng-model="ctrl.search" required>
-                </div>
-                <button class="btn btn-primary" >Get SubReddit</button>
-            </form>
-        
-            <div class="navbar-form">
-                <button class="btn btn-danger"ng-click="ctrl.clearStorage()">Clear Saves</button>
-                <button class="btn btn-info"ng-click="ctrl.updateReddits(0)">Refresh All</button>
-                <form class="navbar-form navbar-nav navbar-right">
-                    <label for="">Num of Results</label> 
-                    <input class="form-control" maxlength="2" size="2" ng-model="ctrl.numResults">
-                </form>
-            </div>
-        </div>
-    </div>
-</nav>
-
-
-
-
 <div class="container">
 	<div class="row">
-		<div class="col-xs-12 col-md-4 col-lg-3" ng-class="{'contentEven':($index +1)%2,'contentOdd':!(($index +1)%2)}" ng-repeat="things in ctrl.fullList">
+		<div 
+            class="col-xs-12 col-md-4 col-lg-3" 
+            ng-class="{'contentEven':($index +1)%2,'contentOdd':!(($index +1)%2)}" 
+            ng-repeat="things in ctrl.fullList">
 		
 		<h4 class="header">{{things[0].data.subreddit}}
 			<i ng-click="ctrl.removeSub($index)" class="fa fa-times-circle"></i> 
@@ -47,8 +16,12 @@
                         <a target="_blank" href="{{thing.data.url}}"> Link </a>
                         <a target="_blank" href="http://reddit.com{{thing.data.permalink}}"> Comments </a>
                         <i ng-show="thing.data.domain == 'youtube.com'" class="fa fa-youtube-play"></i>
-                        <div popover-enable="(thing.data.thumbnail!='self')&&(thing.data.thumbnail!='')" popover-trigger="mouseenter" uib-popover="Click for thumbnail">
-                            <span ng-click="ctrl.popUp(thing.data.thumbnail)" class="title">{{thing.data.title}}</span>
+                        <div 
+                            popover-enable="(thing.data.thumbnail!='self')&&(thing.data.thumbnail!='')" 
+                            popover-trigger="mouseenter" 
+                            uib-popover="Click for thumbnail">
+                            
+                            <span ng-click="ctrl.popUp(thing.data.thumbnail)" ng-class="{'titleHover':(thing.data.thumbnail!='self')&&(thing.data.thumbnail!='')}">{{thing.data.title}}</span>
                         </div>
                     </div>
                 </div>
