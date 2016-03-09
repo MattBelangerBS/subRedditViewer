@@ -38,12 +38,10 @@
         //watches ( watches service for subreddit changes)
         $scope.$watch("ctrl.UpdateService.subReddits",
             function handelNewReddits1(newvalue,oldvalue){
-            console.log(newvalue);
             updateState();
         });
         $scope.$watch("ctrl.UpdateService.fullList",
             function handelNewReddits2(newvalue,oldvalue){
-            console.log(newvalue);
             updateState();
         });
         
@@ -80,7 +78,6 @@
         
         function removeSub(index) {
             var ctrl = this;
-            console.log('remove');
             ctrl.UpdateService.removeSub(index);
         }
         

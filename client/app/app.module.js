@@ -4,7 +4,8 @@
     angular.module('subReddit', [
         'ui.router',
         'ui.bootstrap',
-        'ngAnimate'
+        'ngAnimate',
+        'cgPrompt'
         ])
         
 })();

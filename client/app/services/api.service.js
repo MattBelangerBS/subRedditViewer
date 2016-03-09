@@ -8,23 +8,18 @@
     ApiSrv.$inject = ['$http'];
     
     function ApiSrv($http){     
-        var BASEURL = "http://reddit.com/r/";
-        var ENDPOINT = "/.json";
+        var BASEURL = "http://localhost:80/reddit/";
         
-        var service = {
-            getRequest : getRequest
-        }
-        return service;
-        
+       
         //////////////////
         function getRequest(sub) {
-            return $http.get(ctrl.BASEURL + sub+ ctrl.ENDPOINT)
+            return $http.get(BASEURL+sub)
                 .then(getComplete)
                 .catch(getFail);
                 
-
                 function getComplete(data, status, headers, config) {
-                    return data.data;
+                    var data2 = JSON.parse(data.data);
+                    return data2;
                 }
                 
                 function getFail(e) {
@@ -36,6 +31,11 @@
                     return $q.reject(e);
                 }
         }
+        
+         var service = {
+            getRequest : getRequest
+        }
+        return service;
                 
         
     }

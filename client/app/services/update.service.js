@@ -8,12 +8,13 @@
             
      
     
-    UpdateService.$inject = ['contentService'];
+    UpdateService.$inject = ['contentService','ApiSrv'];
     
-    function UpdateService(contentService){
+    function UpdateService(contentService,ApiSrv){
         var ctrl = this;
         //injectables
         ctrl.contentService = contentService;
+        ctrl.ApiSrv = ApiSrv;
         
         //view variables
         ctrl.search;
@@ -29,7 +30,15 @@
             ctrl.subReddits = JSON.parse(localStorage.subReddits);
             ctrl.updateReddits(0);
             
+        }
+         function tryReddit() {
+             var ctrl = this;
+             ApiSrv.getRequest('finalfantasy')
+                .then(function(res){
+                    console.log(res);
+                });
         }           
+        
         function getReddit (search) {
             var ctrl = this;
             var bool = false;
@@ -53,10 +62,6 @@
             
         }
           
-        function clearStorage() {
-            localStorage.clear();
-        }
-        
         function removeSub(index) {
             var ctrl = this;
         
@@ -70,27 +75,29 @@
         function updateReddits(index) {
             var ctrl = this;
             ctrl.index = index;
-            
-            contentService.updateReddits(ctrl.subReddits[ctrl.index],ctrl.numResults)
-                .then(function(res){
-                    var temp = res;
-                    
-                    for(var i = 0; i < temp.length;i++){
-                        if((ctrl.fullList[ctrl.index][i])){
-                            ctrl.fullList[ctrl.index][i].data = temp[i].data;
+            if(ctrl.subReddits[index]){
+                contentService.updateReddits(ctrl.subReddits[ctrl.index],ctrl.numResults)
+                    .then(function(res){
+                        var temp = res;
+                        
+                        for(var i = 0; i < temp.length;i++){
+                            if((ctrl.fullList[ctrl.index][i])){
+                                ctrl.fullList[ctrl.index][i].data = temp[i].data;
+                            }
+                        }   
+                        
+                        localStorage.savedReddits = JSON.stringify(ctrl.fullList);
+                        
+                        if((ctrl.index+1) < ctrl.subReddits.length){
+                            ctrl.index = ctrl.index+1;
+                            ctrl.updateReddits(ctrl.index);
                         }
-                    }   
-                    
-                    localStorage.savedReddits = JSON.stringify(ctrl.fullList);
-                    if((ctrl.index+1) < ctrl.subReddits.length){
-                        ctrl.index = ctrl.index+1;
-                        ctrl.updateReddits(ctrl.index);
-                    }
-              });
+                });
+        }
         }
         
          var service = {
-            clearStorage: clearStorage,
+            tryReddit: tryReddit,
             getReddit:getReddit,
             removeSub:removeSub,
             updateReddits : updateReddits,
