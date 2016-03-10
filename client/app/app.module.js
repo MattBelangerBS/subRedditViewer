@@ -5,7 +5,8 @@
         'ui.router',
         'ui.bootstrap',
         'ngAnimate',
-        'cgPrompt'
+        'cgPrompt',
+        'toastr'
         ])
         
 })();

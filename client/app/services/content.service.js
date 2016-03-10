@@ -5,13 +5,14 @@
         .module('subReddit')
         .service('contentService',ContentService);
 
-    ContentService.$inject = ['$q'];
+    ContentService.$inject = ['$q','ApiSrv'];
     
-    function ContentService($q){
+    function ContentService($q,ApiSrv){
         var hoverImage;
         
        
         /////////////////////////////////////
+                
         function redditGet(search,num) {
             var deferred = $q.defer();
                          

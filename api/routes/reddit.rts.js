@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var https = require("https");
 
-//https://reddit.com/r/hearthstone/.json
 
 router.get('/:sub',function(req,res){
    

@@ -13,9 +13,9 @@
             
        
 
-    NavCtrl.$inject = ['$state','$scope','UpdateService','prompt'];
+    NavCtrl.$inject = ['$state','$scope','UpdateService','prompt','contentService'];
        
-    function NavCtrl($state,$scope,UpdateService,prompt){
+    function NavCtrl($state,$scope,UpdateService,prompt,contentService){
         var ctrl = this;
         //injetcable
         ctrl.UpdateService = UpdateService;
@@ -28,7 +28,7 @@
         ctrl.getReddit = getReddit;
         ctrl.updateReddits = updateReddits;
         ctrl.clearStorage = clearStorage;
-        ctrl.tryReddit = tryReddit;
+        ctrl.debug = debug;
         
         //functions
         function getReddit(search) {
@@ -38,9 +38,11 @@
         function updateReddits(index) {
             ctrl.UpdateService.updateReddits(index);
         }
-        function tryReddit() {
-            ctrl.UpdateService.tryReddit();;
+         function debug() {
+            console.log(ctrl.UpdateService.fullList);
+            console.log(ctrl.UpdateService.subReddits)
         }
+
         function clearStorage(params) {
             var ctrl = this;
              //simple confirmation

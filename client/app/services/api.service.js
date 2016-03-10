@@ -8,27 +8,22 @@
     ApiSrv.$inject = ['$http'];
     
     function ApiSrv($http){     
-        var BASEURL = "http://localhost:80/reddit/";
-        
+        //var BASEURL = "http://localhost:80/reddit/";
+        //var BASEURL = "https://www.reddit.com/r/hearthstone/new/.json?limit=10";
+         var BASEURL = "https://www.reddit.com/r/";
        
-        //////////////////
-        function getRequest(sub) {
-            return $http.get(BASEURL+sub)
+        /////////////////////////////////
+        function getRequest(sub,filter,limit) {
+            return $http.get(BASEURL+sub+'/'+filter+''+'/.json?limit='+limit)
                 .then(getComplete)
                 .catch(getFail);
                 
                 function getComplete(data, status, headers, config) {
-                    var data2 = JSON.parse(data.data);
-                    return data2;
+                        return data; 
                 }
                 
                 function getFail(e) {
-                     var newMessage = 'XHR Failed for getCustomer';
-                    if (e.data && e.data.description) {
-                        newMessage = newMessage + '\n' + e.data.description;
-                    }
-                    e.data.description = newMessage;
-                    return $q.reject(e);
+                    return e;
                 }
         }
         
