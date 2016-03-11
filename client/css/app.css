@@ -43,11 +43,6 @@ i {
 	padding-left: 5px;
 }
 
-.inline{
-    padding-top: 5px;
-    display: inline-block;
-}
-
 /*navbar*/
 .navbar-fixed-top{
     position: fixed;
