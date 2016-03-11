@@ -8,8 +8,12 @@
     ApiSrv.$inject = ['$http'];
     
     function ApiSrv($http){     
-         var BASEURL = "https://www.reddit.com/r/";
-       
+        var BASEURL = "https://www.reddit.com/r/";
+        
+        var service = {
+            getRequest : getRequest
+        }
+        return service;
         /////////////////////////////////
         function getRequest(sub,filter,limit) {
             return $http.get(BASEURL+sub+'/'+filter+''+'/.json?limit='+limit)
@@ -25,10 +29,6 @@
                 }
         }
         
-         var service = {
-            getRequest : getRequest
-        }
-        return service;
                 
         
     }

@@ -14,7 +14,7 @@
         var ctrl = this;
         //injectables
         ctrl.ApiSrv = ApiSrv;
-        
+           
         //view variables
         ctrl.fullList=[];
         ctrl.subReddits = [];
@@ -22,6 +22,18 @@
         //local variables
         var limit = 10;
         var filter = 'hot';
+        
+        //Exports
+         var service = {
+            getReddit:getReddit,
+            removeSub:removeSub,
+            updateReddits : updateReddits,
+            fullList: ctrl.fullList,
+            activate:activate,
+            subReddits: ctrl.subReddits,
+            hoverImage: ctrl.hoverImage
+        }
+        return service;
                 
         /////////////////////////////
         function activate() {
@@ -34,15 +46,16 @@
         
         function getReddit (search) {
             var ctrl = this;
-            var bool = false;
+            var searchUnique = true;
             
             for (var i=0;i<ctrl.subReddits.length;i++) {
                 if(ctrl.subReddits[i]===search){
-                    bool = true;	
+                    searchUnique = false;
+                     toastr.error('You are already subcribed to that reddit', 'Error');	
                 }
             }
             
-            if (!bool) {
+            if (searchUnique) {
                 ApiSrv.getRequest(search,filter,limit)
                 .then (function (data) {
                     if (data.data && !data.data.error) {
@@ -54,10 +67,8 @@
                     } else {
                          toastr.error('Please enter a valid subreddit name. Remember no spaces allowed', 'Error');
                     }
-                });
-                                 
+                });                 
             };
-            
         }
           
         function removeSub(index) {
@@ -73,8 +84,8 @@
         function updateReddits(index) {
             var ctrl = this;
             ctrl.index = index;
+            
             if (ctrl.subReddits[index]) {
-
                 ApiSrv.getRequest(ctrl.subReddits[ctrl.index],filter,limit)
                     .then (function(res) {
                         var temp = res.data.data.children;
@@ -96,17 +107,7 @@
             }
         }
         
-        //Exports
-         var service = {
-            getReddit:getReddit,
-            removeSub:removeSub,
-            updateReddits : updateReddits,
-            fullList: ctrl.fullList,
-            activate:activate,
-            subReddits: ctrl.subReddits,
-            hoverImage: ctrl.hoverImage
-        }
-        return service;
+        
 
     } 
 

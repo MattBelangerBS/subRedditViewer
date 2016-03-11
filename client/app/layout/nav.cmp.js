@@ -17,7 +17,7 @@
        
     function NavCtrl($state,$scope,RedditSrv,prompt){
         var ctrl = this;
-        //injetcable
+        //injectable
         ctrl.RedditSrv = RedditSrv;
         ctrl.prompt = prompt;
         //varaibles
