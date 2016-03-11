@@ -5,19 +5,24 @@
         .module('subReddit')
         .controller('PopCtrl',PopCtrl);
 
-    PopCtrl.$inject = ['contentService','$modalInstance'];
+    PopCtrl.$inject = ['RedditSrv','$modalInstance'];
     
-    function PopCtrl(contentService,$modalInstance){
+    function PopCtrl(RedditSrv,$modalInstance){
         var ctrl = this;
+        //injectables
+        ctrl.RedditSrv = RedditSrv;
+        ctrl.$modalInstance = $modalInstance
         
-        ctrl.image = contentService.hoverImage;
+        //viewvariable
+        ctrl.image = RedditSrv.hoverImage;
         
+        //functions
         ctrl.closeMod = closeMod;
         
         //////////////////////////////////////////////
         function closeMod() {
             var ctrl = this;;
-            $modalInstance.close();
+            ctrl.$modalInstance.close();
         }
 	        
     }

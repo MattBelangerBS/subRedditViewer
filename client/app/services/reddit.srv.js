@@ -4,22 +4,22 @@
     
     angular
         .module('subReddit')
-        .service('UpdateService',UpdateService);
+        .service('RedditSrv',RedditSrv);
             
      
     
-    UpdateService.$inject = ['contentService','ApiSrv','toastr'];
+    RedditSrv.$inject = ['ApiSrv','toastr'];
     
-    function UpdateService(contentService,ApiSrv,toastr){
+    function RedditSrv(ApiSrv,toastr){
         var ctrl = this;
         //injectables
-        ctrl.contentService = contentService;
         ctrl.ApiSrv = ApiSrv;
         
         //view variables
-        ctrl.search;
         ctrl.fullList=[];
         ctrl.subReddits = [];
+        ctrl.hoverImage = '';
+        //local variables
         var limit = 10;
         var filter = 'hot';
                 
@@ -51,7 +51,6 @@
                         ctrl.subReddits.push(search);
                         localStorage.subReddits = JSON.stringify(ctrl.subReddits);
                         localStorage.savedReddits = JSON.stringify(ctrl.fullList);
-                        ctrl.search = "";
                     } else {
                          toastr.error('Please enter a valid subreddit name. Remember no spaces allowed', 'Error');
                     }
@@ -103,9 +102,9 @@
             removeSub:removeSub,
             updateReddits : updateReddits,
             fullList: ctrl.fullList,
+            activate:activate,
             subReddits: ctrl.subReddits,
-            numResults: ctrl.numResults,
-            activate:activate
+            hoverImage: ctrl.hoverImage
         }
         return service;
 

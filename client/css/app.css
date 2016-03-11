@@ -93,3 +93,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4b', end
     margin-top:0;
     margin-bottom:0;
 }
+.app-modal-window .modal-dialog {
+  width: 500px;
+}

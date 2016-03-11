@@ -13,12 +13,12 @@
             
        
 
-    NavCtrl.$inject = ['$state','$scope','UpdateService','prompt','contentService'];
+    NavCtrl.$inject = ['$state','$scope','RedditSrv','prompt'];
        
-    function NavCtrl($state,$scope,UpdateService,prompt,contentService){
+    function NavCtrl($state,$scope,RedditSrv,prompt){
         var ctrl = this;
         //injetcable
-        ctrl.UpdateService = UpdateService;
+        ctrl.RedditSrv = RedditSrv;
         ctrl.prompt = prompt;
         //varaibles
         ctrl.search = "";
@@ -32,15 +32,15 @@
         
         //functions
         function getReddit(search) {
-            ctrl.UpdateService.getReddit(search);
+            ctrl.RedditSrv.getReddit(search);
             ctrl.search = " ";
         }
         function updateReddits(index) {
-            ctrl.UpdateService.updateReddits(index);
+            ctrl.RedditSrv.updateReddits(index);
         }
          function debug() {
-            console.log(ctrl.UpdateService.fullList);
-            console.log(ctrl.UpdateService.subReddits)
+            console.log(ctrl.RedditSrv.fullList);
+            console.log(ctrl.RedditSrv.subReddits)
         }
 
         function clearStorage(params) {
@@ -51,8 +51,8 @@
                 message: 'Are you sure you want to do this?'
             }).then(function(){
                localStorage.clear();
-               ctrl.UpdateService.fullList = [];
-               ctrl.UpdateService.subReddits = [];
+               ctrl.RedditSrv.fullList = [];
+               ctrl.RedditSrv.subReddits = [];
             });
         }
         

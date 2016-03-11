@@ -8,8 +8,6 @@
     ApiSrv.$inject = ['$http'];
     
     function ApiSrv($http){     
-        //var BASEURL = "http://localhost:80/reddit/";
-        //var BASEURL = "https://www.reddit.com/r/hearthstone/new/.json?limit=10";
          var BASEURL = "https://www.reddit.com/r/";
        
         /////////////////////////////////

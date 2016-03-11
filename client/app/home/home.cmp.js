@@ -11,14 +11,13 @@
 
         });            
      
-    HomeCtrl.$inject = ['$state','$scope','contentService','$uibModal','UpdateService'];
+    HomeCtrl.$inject = ['$state','$scope','$uibModal','RedditSrv'];
     
-    function HomeCtrl($state,$scope,contentService,$uibModal,UpdateService){
+    function HomeCtrl($state,$scope,$uibModal,RedditSrv){
         var ctrl = this;
         //injectables
         ctrl.$uibModal = $uibModal;
-        ctrl.contentService = contentService;
-        ctrl.UpdateService = UpdateService;
+        ctrl.RedditSrv = RedditSrv;
 
         //view variables
         ctrl.search;
@@ -35,42 +34,43 @@
        //init function calls
        activate();
         
-        //watches ( watches service for subreddit changes)
-        $scope.$watch("ctrl.UpdateService.subReddits",
-            function handelNewReddits1(newvalue,oldvalue){
+        //watches (watches service for subreddit changes)
+        $scope.$watch("ctrl.RedditSrv.subReddits",
+            function handelNewRedditsNames(newvalue,oldvalue){
             updateState();
         });
-        $scope.$watch("ctrl.UpdateService.fullList",
-            function handelNewReddits2(newvalue,oldvalue){
+        $scope.$watch("ctrl.RedditSrv.fullList",
+            function handelNewRedditsData(newvalue,oldvalue){
             updateState();
         });
         
-        ////////// functions
+        ////////////////////////////
         
          function activate() {             
              if(localStorage.savedReddits || localStorage.subReddits){
                 ctrl.fullList = JSON.parse(localStorage.savedReddits);
                 ctrl.subReddits = JSON.parse(localStorage.subReddits);
-                ctrl.UpdateService.activate();
+                ctrl.RedditSrv.activate();
             };
          }   
          
          function updateState() {          
-             ctrl.fullList = ctrl.UpdateService.fullList;
-             ctrl.subReddits = ctrl.UpdateService.subReddits;
+             ctrl.fullList = ctrl.RedditSrv.fullList;
+             ctrl.subReddits = ctrl.RedditSrv.subReddits;
          }  
                        
         function popUp(pic) {
             var ctrl = this;
         
             if(pic!=="self" && pic !== ""){
-                ctrl.contentService.hoverImage = pic;
+                ctrl.RedditSrv.hoverImage = pic;
                 ctrl.$uibModal
                     .open({
                         animation: true,
                         templateUrl: '/app/popUp/popUp.html',
                         controller: 'PopCtrl',
                         controllerAs: 'ctrl',
+                        windowClass: 'app-modal-window',
                         size: "sm"
                     });
             }
@@ -78,7 +78,7 @@
         
         function removeSub(index) {
             var ctrl = this;
-            ctrl.UpdateService.removeSub(index);
+            ctrl.RedditSrv.removeSub(index);
         }
         
     }
