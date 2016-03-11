@@ -15,9 +15,9 @@
         return function(scope, element, attrs) {
             angular.element($window).bind("scroll", function() {
                 if (this.pageYOffset > this.lastScrollTop) {
-                    scope.boolChangeClass = true;
+                    scope.slide = true;
                 } else {
-                    scope.boolChangeClass = false;
+                    scope.slide = false;
                 }
                 this.lastScrollTop = this.pageYOffset;
                 scope.$apply();

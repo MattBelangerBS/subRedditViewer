@@ -1,43 +1,3 @@
-h1 {
-	color:red;
-}
-.title{
-	font-weight: bold;
-}
-.titleHover:hover{
-	cursor: pointer;
-	text-decoration: underline;
-}
-.thumb{
-	display: block;
-
-}
-
-.reddits{
-    height:500px;
-	overflow: scroll;
-    text-align: left;
-}
-.header{
-    position: relative;
-    scroll-snap-coordinate: 0%;
-    width:100%;
-    background-color: inherit;
-    margin:0;
-    padding:15px;
-   
-}
-
-i.fa-times-circle:hover{
-	cursor: pointer;
-}
-i{
-	padding-left: 5px;
-}
-.popImg{
-	width: 100%;
-	height: 100%;
-}
 .container-fluid{
     padding-top:5px;
 }
@@ -47,27 +7,68 @@ i{
     margin-top:10px;
     text-align:center;
 }
+/*reddit box*/
+.header{
+    position: relative;
+    width:100%;
+    margin:0;
+    padding:15px;
+   
+}
+
+.reddits{
+    height:500px;
+	overflow: scroll;
+    text-align: left;
+}
+
+.titleHover:hover{
+	cursor: pointer;
+	text-decoration: underline;
+}
+.thumb{
+	display: block;
+}
+
+.panel-body {
+    padding-top:0;
+}
+
+
+i.fa-times-circle:hover{
+	cursor: pointer;
+}
+
+i {
+	padding-left: 5px;
+}
+
 .inline{
     padding-top: 5px;
     display: inline-block;
 }
-.text-center{
-    text-align: center;
-}
 
+/*navbar*/
 .navbar-fixed-top{
     position: fixed;
     top: 0;
     transition: top 0.5s ease-in-out;
 
 }
-.min{
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border:none;
+}
+.navbar-form {
+    margin-top:0;
+    margin-bottom:0;
+}
+.minimizeSlow{
    top:-100px;
    
 }
 
-.min2{
-   top:-500px;
+.minimizeFast{
+   top:-400px;
    transition: top 1s ease-in-out;
    
 }
@@ -81,18 +82,11 @@ background: linear-gradient(to bottom,  #ffaf4b 0%,#ff920a 100%); /* W3C, IE10+,
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4b', endColorstr='#ff920a',GradientType=0 ); /* IE6-9 */
 
 }
-
-.panel-body {
-    padding-top:0;
-}
-
-.navbar-default .navbar-collapse, .navbar-default .navbar-form {
-    border:none;
-}
-.navbar-form {
-    margin-top:0;
-    margin-bottom:0;
-}
+/*popup*/
 .app-modal-window .modal-dialog {
   width: 500px;
+}
+.popImg{
+	width: 100%;
+	height: 100%;
 }

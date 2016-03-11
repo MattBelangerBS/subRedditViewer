@@ -1,50 +1,50 @@
 ///////////////no longer used
-(function() {
-    'use strict';
+// (function() {
+//     'use strict';
     
-    angular
-        .module('subReddit')
-        .service('contentService',ContentService);
+//     angular
+//         .module('subReddit')
+//         .service('contentService',ContentService);
 
-    ContentService.$inject = ['$q','ApiSrv'];
+//     ContentService.$inject = ['$q','ApiSrv'];
     
-    function ContentService($q,ApiSrv){
-        var hoverImage;
+//     function ContentService($q,ApiSrv){
+//         var hoverImage;
         
        
-        /////////////////////////////////////
+//         /////////////////////////////////////
                 
-        function redditGet(search,num) {
-            var deferred = $q.defer();
+//         function redditGet(search,num) {
+//             var deferred = $q.defer();
                          
-           reddit.hot(search).limit(num)
-           .fetch(function (res) {
-                var data = res.data.children;
-                deferred.resolve(data);
-           })
+//            reddit.hot(search).limit(num)
+//            .fetch(function (res) {
+//                 var data = res.data.children;
+//                 deferred.resolve(data);
+//            })
                 
-            return deferred.promise;
-        }
+//             return deferred.promise;
+//         }
         
-        function updateReddits(subreddit,num) {
-             var deferred = $q.defer();
+//         function updateReddits(subreddit,num) {
+//              var deferred = $q.defer();
              
-             reddit.hot(subreddit).limit(num)
-                .fetch(function(res){
-                   var data = res.data.children;
-                    deferred.resolve(data);
-              });
+//              reddit.hot(subreddit).limit(num)
+//                 .fetch(function(res){
+//                    var data = res.data.children;
+//                     deferred.resolve(data);
+//               });
              
-            return deferred.promise;
-        }
+//             return deferred.promise;
+//         }
         
-         var service = {
-            redditGet : redditGet,
-            updateReddits : updateReddits,
-        }
-        return service;
+//          var service = {
+//             redditGet : redditGet,
+//             updateReddits : updateReddits,
+//         }
+//         return service;
         
         
-    }
+//     }
 
-})();
+// })();
