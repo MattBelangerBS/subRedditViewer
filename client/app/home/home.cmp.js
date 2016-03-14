@@ -76,9 +76,9 @@
             }
         }
         
-        function removeSub(index) {
+        function removeSub(indexToRemove) {
             var ctrl = this;
-            ctrl.RedditSrv.removeSub(index);
+            ctrl.RedditSrv.removeSub(indexToRemove);
         }
         
     }

@@ -1,38 +1,17 @@
-<div class="container">
-	<div class="row">
-		<div 
-            class="col-xs-12 col-md-4 col-lg-3" 
-            ng-class="{'contentEven':($index +1)%2,'contentOdd':!(($index +1)%2)}" 
-            ng-repeat="things in ctrl.fullList">
-		
-		<h4 class="header">{{things[0].data.subreddit}}
-			<i ng-click="ctrl.removeSub($index)" class="fa fa-times-circle"></i> 
-		</h4>
-	       <div class="reddits">
-                <div ng-repeat="thing in things" class="panel-body">
-                    <div ng-hide="thing.data.stickied">
-                        {{thing.data.score}}
-                        <a target="_blank" href="{{thing.data.url}}"> Link </a>
-                        <a target="_blank" href="http://reddit.com{{thing.data.permalink}}"> Comments </a>
-                        <i class="fa fa-youtube-play" 
-                           ng-show="thing.data.domain == 'youtube.com'">
-                        </i>
-                        <div 
-                            popover-enable="(thing.data.thumbnail!='self')&&(thing.data.thumbnail!='')" 
-                            popover-trigger="mouseenter" 
-                            uib-popover="Click for thumbnail">
-                            
-                            <span ng-click="ctrl.popUp(thing.data.thumbnail)" 
-                                  ng-class="{'titleHover':(thing.data.thumbnail!='self')&&(thing.data.thumbnail!='')}">
-                                  {{thing.data.title}}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div> 
-		</div>
-	</div>
-</div>
-
+<main>
+    <div class="container">
+        <div class="row">
+            <reddit 
+                class="col-xs-12 col-md-4 col-lg-3" 
+                ng-class="{'contentEven':($index +1)%2,'contentOdd':!(($index +1)%2)}" 
+                ng-repeat="subReddit in ctrl.fullList"
+                sub="subReddit"
+                sub-index="$index"
+                remove-sub="ctrl.removeSub(indexToRemove)"
+                pop-up="ctrl.popUp(pic)">
+            </reddit>
+        </div>
+    </div>
+</main>
 
 

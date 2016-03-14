@@ -1,0 +1,14 @@
+
+<article>
+    <h4 class="header">{{ctrl.sub[0].data.subreddit}}
+        <i ng-click="ctrl.removeSub({indexToRemove:ctrl.subIndex})" class="fa fa-times-circle"></i> 
+    </h4>
+    <div class="reddits">
+        <redditlink 
+            class="panel-body"
+            ng-repeat="things in ctrl.sub" 
+            thing='things'
+            pop-up="ctrl.popUp({pic : pic})">
+        </redditlink>
+    </div> 
+</article>

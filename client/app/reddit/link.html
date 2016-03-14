@@ -1,0 +1,30 @@
+<div>
+    <section>
+        {{ctrl.thing.data.score}}
+        <a target="_blank" href="{{ctrl.thing.data.url}}"> Link </a>
+        <a target="_blank" href="{{ctrl.url}}{{ctrl.thing.data.permalink}}"> Comments </a>
+        <i class="fa fa-youtube-play" 
+            ng-show="ctrl.thing.data.domain === 'youtube.com'"
+            popover-trigger="mouseenter" 
+            uib-popover="Youtube">
+        </i>
+        <i ng-show="ctrl.thing.data.stickied" 
+            class="fa fa-sticky-note"
+            popover-trigger="mouseenter" 
+            uib-popover="Sticked">
+        </i>
+    </section>
+    
+    <section>
+        <div 
+            popover-enable="(ctrl.thing.data.thumbnail!='self')&&(ctrl.thing.data.thumbnail!='')" 
+            popover-trigger="mouseenter" 
+            uib-popover="Click for thumbnail">
+            
+            <span ng-click="ctrl.popUp({pic:ctrl.thing.data.thumbnail})" 
+                    ng-class="{'titleHover':(ctrl.thing.data.thumbnail!='self')&&(ctrl.thing.data.thumbnail!='')}">
+                    {{ctrl.thing.data.title}}
+            </span>
+        </div>
+    </section>
+</div>

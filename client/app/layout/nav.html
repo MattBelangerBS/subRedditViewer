@@ -1,28 +1,28 @@
-
-<nav class="navbar navbar-default navbar-fixed-top" scroll  id="page" ng-class="{minimizeSlow:slide, minimizeFast:slide&&!isCollapsed}">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed">
-            <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-       </div>
-        <div class="navbar-collapse" ng-class="{collapse: isCollapsed}">
-            <form ng-submit="ctrl.getReddit(ctrl.search)"class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                    <input  size="20" type="text"  placeholder="Enter Subreddit Name"class="form-control" ng-model="ctrl.search" required>
+<header>
+    <nav class="navbar navbar-default navbar-fixed-top" scroll  id="page" ng-class="{minimizeSlow:slide, minimizeFast:slide&&!isCollapsed}">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed">
+                <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+        </div>
+            <div class="navbar-collapse" ng-class="{collapse: isCollapsed}">
+                <form ng-submit="ctrl.getReddit(ctrl.search)"class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input  size="20" type="text"  placeholder="Enter Subreddit Name"class="form-control" ng-model="ctrl.search" required>
+                    </div>
+                    <button class="btn btn-primary" >Get SubReddit</button>
+                </form>
+            
+                <div class="navbar-form">
+                    <button class="btn btn-danger"ng-click="ctrl.clearStorage()">Clear Saves</button>
+                    <button class="btn btn-info"ng-click="ctrl.updateReddits(0)">Refresh All</button>
+                    <button class="btn btn-info"ng-click="ctrl.debug()">Debug</button>
                 </div>
-                <button class="btn btn-primary" >Get SubReddit</button>
-            </form>
-        
-            <div class="navbar-form">
-                <button class="btn btn-danger"ng-click="ctrl.clearStorage()">Clear Saves</button>
-                <button class="btn btn-info"ng-click="ctrl.updateReddits(0)">Refresh All</button>
-                <!--<button class="btn btn-info"ng-click="ctrl.debug()">Debug</button>-->
             </div>
         </div>
-    </div>
-</nav>
-
+    </nav>
+</header>
