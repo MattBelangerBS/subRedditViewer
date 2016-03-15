@@ -25,11 +25,9 @@
                 },
                 resolve:{
                     test: function ($state) {
-                        console.log(localStorage.authToken);
                         if(localStorage.authToken){
-                            console.log('yo');
                             return true;
-                        } else{
+                        } else {
                             $state.go('auth');
                         }
                     }
@@ -43,7 +41,17 @@
                         controller:'AuthCtrl',
                         controllerAs:'authVm'    
                     }
-                }
+                },
+                // resolve:{
+                //     test: function ($state) {
+                //         if(!localStorage.authToken){
+                //            return true;
+                //         } else {
+                //             console.log('yoyoyooyoyoyo');
+                //             $state.go('home');   
+                //         }
+                //     }
+                // }
 				
 			})
 			.state('register',{
@@ -60,22 +68,22 @@
             $httpProvider.interceptors.push(function(jwtHelper){
 			return {
 				request:function(config){
-					console.log(config);
-                    console.log(config.url.indexOf('reddit'));
+					// console.log(config);
+                    // console.log(config.url.indexOf('reddit'));
                     if(config.url.indexOf('reddit')<0){
                         
                         if(localStorage.authToken !== 'undefined'){
                             config.headers.authentication = localStorage.authToken;
                         }
                     }
-                    console.log(config);
+                    // console.log(config);
                     return config;
 				},
 				response:function(response){
 					var auth_token = response.headers('authentication');
 					if(auth_token){
 						var decrypt_token = jwtHelper.decodeToken(auth_token);
-						console.log(decrypt_token);
+						// console.log(decrypt_token);
 						if(decrypt_token.email){
 							localStorage.authToken = auth_token;
 						}

@@ -5,9 +5,9 @@
 		.module('subReddit')
 		.controller('AuthCtrl',AuthCtrl);
 
-	AuthCtrl.$inject = ['$http','$state'];
+	AuthCtrl.$inject = ['$http','$state','toastr'];
 
-	function AuthCtrl($http,$state){
+	function AuthCtrl($http,$state,toastr){
 		var authVm = this;
         authVm.state = $state;
         console.log('hi');
@@ -20,6 +20,13 @@
 		authVm.authenticate = authenticate;
         authVm.goToReg = goToReg;
 
+        //kick-forward
+        console.log(localStorage.authToken);
+        if(localStorage.authToken && (authVm.state.current.name == 'auth')){
+            
+            toastr.success('Already Logged In', 'Success');
+            authVm.state.go('home');
+        }
 		function register(){
 			//check passwords
 			if(authVm.password == authVm.repassword){
