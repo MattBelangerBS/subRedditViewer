@@ -34,6 +34,7 @@
        //init function calls
        activate();
         
+   
         //watches (watches service for subreddit changes)
         $scope.$watch("ctrl.RedditSrv.subReddits",
             function handelNewRedditsNames(newvalue,oldvalue){
@@ -47,8 +48,9 @@
         ////////////////////////////
         
          function activate() {             
-             if(localStorage.savedReddits || localStorage.subReddits){
-                ctrl.fullList = JSON.parse(localStorage.savedReddits);
+             if(localStorage.subReddits !== 'null'){
+                 
+                //ctrl.fullList = JSON.parse(localStorage.savedReddits);
                 ctrl.subReddits = JSON.parse(localStorage.subReddits);
                 ctrl.RedditSrv.activate();
             };

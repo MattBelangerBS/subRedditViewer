@@ -13,12 +13,13 @@
             
        
 
-    NavCtrl.$inject = ['$state','$scope','RedditSrv','prompt'];
+    NavCtrl.$inject = ['$state','$scope','RedditSrv','prompt','UserSrv'];
        
-    function NavCtrl($state,$scope,RedditSrv,prompt){
+    function NavCtrl($state,$scope,RedditSrv,prompt,UserSrv){
         var ctrl = this;
         //injectable
         ctrl.RedditSrv = RedditSrv;
+        ctrl.UserSrv = UserSrv;
         ctrl.prompt = prompt;
         //varaibles
         ctrl.search = "";
@@ -29,6 +30,8 @@
         ctrl.updateReddits = updateReddits;
         ctrl.clearStorage = clearStorage;
         ctrl.debug = debug;
+        ctrl.getUsers = getUsers;
+        ctrl.logOut = logOut;
         
         //functions
         function getReddit(search) {
@@ -41,6 +44,14 @@
          function debug() {
             console.log(ctrl.RedditSrv.fullList);
             console.log(ctrl.RedditSrv.subReddits)
+        }
+        function getUsers(){
+            console.log('yo');
+            ctrl.UserSrv.getUsers();
+        }
+         function logOut(){
+             localStorage.clear();
+            $state.go('auth');
         }
 
         function clearStorage(params) {

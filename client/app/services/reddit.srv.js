@@ -8,12 +8,13 @@
             
      
     
-    RedditSrv.$inject = ['ApiSrv','toastr'];
+    RedditSrv.$inject = ['ApiSrv','toastr','UserSrv'];
     
-    function RedditSrv(ApiSrv,toastr){
+    function RedditSrv(ApiSrv,toastr,UserSrv){
         var ctrl = this;
         //injectables
         ctrl.ApiSrv = ApiSrv;
+        ctrl.UserSrv = UserSrv;
            
         //view variables
         ctrl.fullList=[];
@@ -38,7 +39,7 @@
         /////////////////////////////
         function activate() {
             var ctrl = this;
-            ctrl.fullList = JSON.parse(localStorage.savedReddits);
+            ctrl.fullList = [];
             ctrl.subReddits = JSON.parse(localStorage.subReddits);
             ctrl.updateReddits(0);
             
@@ -63,7 +64,8 @@
                         ctrl.fullList.push(temp);
                         ctrl.subReddits.push(search);
                         localStorage.subReddits = JSON.stringify(ctrl.subReddits);
-                        localStorage.savedReddits = JSON.stringify(ctrl.fullList);
+                        UserSrv.updateUser(ctrl.subReddits);
+                        //localStorage.savedReddits = JSON.stringify(ctrl.fullList);
                     } else {
                          toastr.error('Please enter a valid subreddit name. Remember no spaces allowed', 'Error');
                     }
@@ -77,7 +79,7 @@
             ctrl.fullList.splice(index,1);
             ctrl.subReddits.splice(index,1);
             
-            localStorage.savedReddits = JSON.stringify(ctrl.fullList);
+           // localStorage.savedReddits = JSON.stringify(ctrl.fullList);
             localStorage.subReddits = JSON.stringify(ctrl.subReddits);
         }
         
@@ -90,13 +92,14 @@
                     .then (function(res) {
                         var temp = res.data.data.children;
                         //update local varibale with no ones
-                        for (var i = 0; i < temp.length;i++) {
-                            if ((ctrl.fullList[ctrl.index][i])) {
-                                ctrl.fullList[ctrl.index][i].data = temp[i].data;
-                            }
-                        }   
+                        // for (var i = 0; i < temp.length;i++) {
+                        //     if ((ctrl.fullList[ctrl.index][i])) {
+                        //         ctrl.fullList[ctrl.index][i].data = temp[i].data;
+                        //     }
+                        // }   
+                        ctrl.fullList.push(temp);
                         
-                        localStorage.savedReddits = JSON.stringify(ctrl.fullList);
+                        //localStorage.savedReddits = JSON.stringify(ctrl.fullList);
                         
                         //recursive call
                         if ((ctrl.index+1) < ctrl.subReddits.length) {

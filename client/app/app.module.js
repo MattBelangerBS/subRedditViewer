@@ -5,6 +5,7 @@
         'ui.router',
         'ui.bootstrap',
         'ngAnimate',
+        'angular-jwt',
         'cgPrompt',
         'toastr'
         ])
