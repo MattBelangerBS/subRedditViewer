@@ -2,9 +2,7 @@ var jwt = require('jsonwebtoken');
 
 module.exports = function(req, res, next) {
     // check header or url parameters or post parameters for token
-    //console.log(req.headers);
     var token = req.body.token || req.headers['authentication'];
-    //console.log(token);
     // decode token
     if (token) {
         // verifies secret and checks exp

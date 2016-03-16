@@ -1,6 +1,6 @@
 <section id="auth">
   <div class="login-page">
-    <div id="main-content" class="auth main-content" ng-submit="authVm.authenticate()">
+    <div id="main-content" class="auth main-content" ng-submit="ctrl.authenticate()">
       <div class="banner-wrapper registration-header">
         <h3>Log In</h3>
       </div>
@@ -11,21 +11,21 @@
               <div class="row">
                 <div class="col-xs-12">
                   <span class="field-validation-valid" data-valmsg-for="EmailAddress" data-valmsg-replace="true"></span>
-                  <input class="form-input bs-input-box stacked-input-box" type="text" name="EmailAddress" value="" placeholder="Email Address" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model="authVm.email" />
+                  <input class="form-input bs-input-box stacked-input-box" type="text" name="EmailAddress" value="" placeholder="Email Address" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model="ctrl.email" />
                 </div>
               </div>
               <div class="row">
                 <div class="col-xs-12">
                   <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
-                  <input class="form-input bs-input-box stacked-input-box" type="password" name="Password" placeholder="Password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model="authVm.password" />
+                  <input class="form-input bs-input-box stacked-input-box" type="password" name="Password" placeholder="Password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model="ctrl.password" />
                 </div>
               </div>
-              <input type="submit" value="{{authVm.auth_btn}}" class="form-input btn btn-primary bs-form__button btn-lg stacked-input-box"/>
+              <input type="submit" value="{{ctrl.auth_btn}}" class="form-input btn btn-primary bs-form__button btn-lg stacked-input-box"/>
             </form>
           </div>
         </div>
       </div>
-          <button  ng-click="authVm.goToReg()"  class="form-input btn btn-primary bs-form__button btn-lg stacked-input-box"> Register</button>
+          <button  ng-click="ctrl.goToReg()"  class="form-input btn btn-primary bs-form__button btn-lg stacked-input-box"> Register</button>
     </div>
   </div>
 </section>

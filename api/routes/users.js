@@ -9,9 +9,13 @@ router.get('/',function(req,res){
 		res.json({users:users});
 	})
 })
+//check if authtoekjn is valid
+router.get('/check',function(req,res){
+	res.send('valid');
+})
 
 //delete test accounts via url bar
-router.get('/remove/:userId',function(req,res){
+router.get('/:userId',function(req,res){
 	var where = {where:{id:req.params.userId}}
 	models.Users.find(where).then(function(user){
 		user.destroy();

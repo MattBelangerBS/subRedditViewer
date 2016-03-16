@@ -11,9 +11,9 @@
 
         });            
      
-    HomeCtrl.$inject = ['$state','$scope','$uibModal','RedditSrv'];
+    HomeCtrl.$inject = ['$state','$scope','$uibModal','RedditSrv','$http','jwtHelper'];
     
-    function HomeCtrl($state,$scope,$uibModal,RedditSrv){
+    function HomeCtrl($state,$scope,$uibModal,RedditSrv,$http,jwtHelper){
         var ctrl = this;
         //injectables
         ctrl.$uibModal = $uibModal;
@@ -33,6 +33,7 @@
         
        //init function calls
        activate();
+       
         
    
         //watches (watches service for subreddit changes)
@@ -48,12 +49,12 @@
         ////////////////////////////
         
          function activate() {             
-             if(localStorage.subReddits !== 'null'){
+             if(localStorage.subReddits !== undefined){
                  
-                //ctrl.fullList = JSON.parse(localStorage.savedReddits);
                 ctrl.subReddits = JSON.parse(localStorage.subReddits);
                 ctrl.RedditSrv.activate();
-            };
+            }
+                
          }   
          
          function updateState() {          

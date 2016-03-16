@@ -13,7 +13,8 @@
         var service = {
             getRequest : getRequest,
             getUsers : getUsers,
-            updateUser:updateUser
+            updateUser:updateUser,
+            checkUser:checkUser
         }
         return service;
         /////////////////////////////////
@@ -44,6 +45,21 @@
                     return e;
                 }
         }
+        
+        function checkUser() {
+            return $http.get('/api/users/check')
+                .then(getComplete)
+                .catch(getFail);
+                
+                function getComplete(data, status, headers, config) {
+                        return data; 
+                }
+                
+                function getFail(e) {
+                    return e;
+                }
+        }
+        
         function updateUser(search) {
             
             var data = {

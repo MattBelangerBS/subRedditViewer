@@ -77,6 +77,7 @@
         
             ctrl.fullList.splice(index,1);
             ctrl.subReddits.splice(index,1);
+            UserSrv.updateUser(ctrl.subReddits);
             localStorage.subReddits = JSON.stringify(ctrl.subReddits);
         }
         

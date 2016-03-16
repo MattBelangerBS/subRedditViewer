@@ -8,53 +8,48 @@
 	AuthCtrl.$inject = ['$http','$state','toastr'];
 
 	function AuthCtrl($http,$state,toastr){
-		var authVm = this;
-        authVm.state = $state;
+		var ctrl = this;
+        ctrl.state = $state;
         console.log('hi');
 		//buttons
-		authVm.register_btn = 'Sign Up';
-		authVm.auth_btn = "Log In";
+		ctrl.register_btn = 'Sign Up';
+		ctrl.auth_btn = "Log In";
 
 		//Functions
-		authVm.register = register;
-		authVm.authenticate = authenticate;
-        authVm.goToReg = goToReg;
+		ctrl.register = register;
+		ctrl.authenticate = authenticate;
+        ctrl.goToReg = goToReg;
 
         //kick-forward
-        console.log(localStorage.authToken);
-        if(localStorage.authToken && (authVm.state.current.name == 'auth')){
-            
-            toastr.success('Already Logged In', 'Success');
-            authVm.state.go('home');
-        }
+       
 		function register(){
 			//check passwords
-			if(authVm.password == authVm.repassword){
+			if(ctrl.password == ctrl.repassword){
 				var user = {
-					email:authVm.email,
-					password:authVm.password,
+					email:ctrl.email,
+					password:ctrl.password,
                     reddits:JSON.stringify(['aww'])
 				}
 				user = JSON.stringify(user);
 				$http.post('/api/auth/register',user)
 				.then(function(res){
 					console.log(res);
-					authVm.register_btn = res.data.msg;
+					ctrl.register_btn = res.data.msg;
 				})
 			}
 			else{
-				authVm.register_btn = "Passwords Don't Match";
+				ctrl.register_btn = "Passwords Don't Match";
 			}
 		}
 
         function goToReg() {
-             authVm.state.go('register');
+             ctrl.state.go('register');
         }
 		function authenticate(){
            
 			var user = {
-				email:authVm.email,
-				password:authVm.password
+				email:ctrl.email,
+				password:ctrl.password
 			}
 
 			user = JSON.stringify(user);
@@ -67,9 +62,9 @@
                     }else{
                         localStorage.subReddits = res.data.user.reddits;
                     }
-                    localStorage.loginEmail = authVm.email;
-                    authVm.auth_btn = res.data.msg;
-                    authVm.state.go('home');
+                    localStorage.loginEmail = ctrl.email;
+                    ctrl.auth_btn = res.data.msg;
+                    ctrl.state.go('home');
                 }
 				
                 
