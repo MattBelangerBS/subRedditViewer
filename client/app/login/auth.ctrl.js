@@ -34,7 +34,7 @@
 				$http.post('/api/auth/register',user)
 				.then(function(res){
 					ctrl.register_btn = res.data.msg;
-                    toastr.sucess('Account Created. Please login', 'Created');
+                    toastr.success('Account Created. Please login', 'Created');
                     $state.go('auth');
 				})
 			}

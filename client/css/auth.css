@@ -43,6 +43,7 @@
 #auth .login-page .btn-info {
     background-color: #449032;
     outline: none;
+    color:white;
 }
 
 #auth .login-page .btn-primary:hover {
