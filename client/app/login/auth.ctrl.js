@@ -55,6 +55,10 @@
 			user = JSON.stringify(user);
 			$http.post('/api/auth/authenticate',user)
 			.then(function(res){
+                if(res.data.msg==='Email/Password is incorrect'){
+                     toastr.error(res.data.msg, 'Error');
+                    return;
+                }
                 if(res.status==200){
                     if(localStorage.subReddits === res.data.user.reddits){
                     }else{
@@ -64,6 +68,7 @@
                     ctrl.auth_btn = res.data.msg;
                     ctrl.state.go('home');
                 }
+                
 				
                 
 			})
