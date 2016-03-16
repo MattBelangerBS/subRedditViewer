@@ -22,7 +22,10 @@
                     <button class="btn btn-info"ng-click="ctrl.updateReddits(0)">Refresh All</button>
                     <!--<button class="btn btn-info"ng-click="ctrl.debug()">Debug</button>
                      <button class="btn btn-info"ng-click="ctrl.getUsers()">Users</button>-->
-                     <button class="btn btn-primary"ng-click="ctrl.logOut()">LogOut</button>
+                
+                    <div class="navbar-right" ng-class="{topPad:!isCollapsed}">
+                        <button class="btn btn-primary"ng-click="ctrl.logOut()">Log Out</button>
+                    </div>
                 </div>
             </div>
         </div>
