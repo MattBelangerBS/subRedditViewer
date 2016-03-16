@@ -28,7 +28,7 @@
         function getUsers() {
             var ctrl = this;
             ApiSrv.getUsers().then(function(res){
-                console.log(res);
+
             });
         }    
          function checkUser() {
@@ -46,7 +46,6 @@
                     $state.go('auth');
                     
                 }
-                console.log(res);
             });
         }         
         

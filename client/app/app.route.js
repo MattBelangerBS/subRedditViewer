@@ -27,11 +27,10 @@
                        
                         auth:function($state,jwtHelper){
                             try{
-                                console.log(jwtHelper.decodeToken(localStorage.authToken));
+                                jwtHelper.decodeToken(localStorage.authToken);
                             }
                             catch(err){
                                 var ctrl = this;
-                                console.log(err);
                                 ctrl.$state.go('auth');
                             }
 

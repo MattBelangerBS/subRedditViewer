@@ -10,7 +10,6 @@
 	function AuthCtrl($http,$state,toastr){
 		var ctrl = this;
         ctrl.state = $state;
-        console.log('hi');
 		//buttons
 		ctrl.register_btn = 'Sign Up';
 		ctrl.auth_btn = "Log In";
@@ -58,7 +57,6 @@
 			.then(function(res){
                 if(res.status==200){
                     if(localStorage.subReddits === res.data.user.reddits){
-                        console.log('we gottta match!');
                     }else{
                         localStorage.subReddits = res.data.user.reddits;
                     }
