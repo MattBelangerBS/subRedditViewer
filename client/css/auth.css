@@ -40,6 +40,10 @@
   background-color: #ff6d37;
   outline:none;
 }
+#auth .login-page .btn-info {
+    background-color: #449032;
+    outline: none;
+}
 
 #auth .login-page .btn-primary:hover {
   background-color: #FF5B1E;

@@ -33,8 +33,9 @@
 				user = JSON.stringify(user);
 				$http.post('/api/auth/register',user)
 				.then(function(res){
-					console.log(res);
 					ctrl.register_btn = res.data.msg;
+                    toastr.sucess('Account Created. Please login', 'Created');
+                    $state.go('auth');
 				})
 			}
 			else{
@@ -56,7 +57,6 @@
 			$http.post('/api/auth/authenticate',user)
 			.then(function(res){
                 if(res.status==200){
-                    console.log(res);
                     if(localStorage.subReddits === res.data.user.reddits){
                         console.log('we gottta match!');
                     }else{
