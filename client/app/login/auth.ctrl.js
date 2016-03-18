@@ -60,11 +60,10 @@
                     return;
                 }
                 if(res.status==200){
-                    if(localStorage.subReddits === res.data.user.reddits){
-                    }else{
-                        localStorage.subReddits = res.data.user.reddits;
+                    if(AuthSrv.getCookie('subReddits') !== res.data.user.reddits){
+                        AuthSrv.setCookie('subReddits',res.data.user.reddits);
                     }
-                    localStorage.loginEmail = ctrl.email;
+                    //localStorage.loginEmail = ctrl.email;
                     ctrl.auth_btn = res.data.msg;
                     ctrl.state.go('home');
                 }

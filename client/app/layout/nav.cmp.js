@@ -13,13 +13,14 @@
             
        
 
-    NavCtrl.$inject = ['$state','$scope','RedditSrv','prompt','UserSrv'];
+    NavCtrl.$inject = ['$state','$scope','RedditSrv','prompt','UserSrv','AuthSrv'];
        
-    function NavCtrl($state,$scope,RedditSrv,prompt,UserSrv){
+    function NavCtrl($state,$scope,RedditSrv,prompt,UserSrv,AuthSrv){
         var ctrl = this;
         //injectable
         ctrl.RedditSrv = RedditSrv;
         ctrl.UserSrv = UserSrv;
+        ctrl.AuthSrv = AuthSrv;
         ctrl.prompt = prompt;
         //varaibles
         ctrl.search = "";
@@ -46,11 +47,10 @@
             console.log(ctrl.RedditSrv.subReddits)
         }
         function getUsers(){
-            console.log('yo');
             ctrl.UserSrv.getUsers();
         }
          function logOut(){
-             localStorage.clear();
+            ctrl.AuthSrv.clearCookies();
             $state.go('auth');
         }
 
@@ -61,7 +61,7 @@
                 title: 'Clear all saves?',
                 message: 'Are you sure you want to do this?'
             }).then(function(){
-               localStorage.clear();
+               ctrl.AuthSrv.clearCookies();
                ctrl.RedditSrv.fullList = [];
                ctrl.RedditSrv.subReddits = [];
             });

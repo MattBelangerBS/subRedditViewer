@@ -7,7 +7,8 @@
         'ngAnimate',
         'angular-jwt',
         'cgPrompt',
-        'toastr'
+        'toastr',
+        'ngCookies'
         ])
         
 })();

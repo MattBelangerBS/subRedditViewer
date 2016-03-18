@@ -11,13 +11,14 @@
 
         });            
      
-    HomeCtrl.$inject = ['$state','$scope','$uibModal','RedditSrv','$http','jwtHelper'];
+    HomeCtrl.$inject = ['$state','$scope','$uibModal','RedditSrv','$http','jwtHelper','AuthSrv'];
     
-    function HomeCtrl($state,$scope,$uibModal,RedditSrv,$http,jwtHelper){
+    function HomeCtrl($state,$scope,$uibModal,RedditSrv,$http,jwtHelper,AuthSrv){
         var ctrl = this;
         //injectables
         ctrl.$uibModal = $uibModal;
         ctrl.RedditSrv = RedditSrv;
+        ctrl.AuthSrv = AuthSrv;
 
         //view variables
         ctrl.search;
@@ -49,9 +50,9 @@
         ////////////////////////////
         
          function activate() {             
-             if(localStorage.subReddits !== undefined){
+             if(AuthSrv.getCookie('subReddits')!== undefined){
                  
-                ctrl.subReddits = JSON.parse(localStorage.subReddits);
+                //ctrl.subReddits = AuthSrv.getCookie('subReddits');
                 ctrl.RedditSrv.activate();
             }
                 

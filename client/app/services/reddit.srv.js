@@ -8,18 +8,16 @@
             
      
     
-    RedditSrv.$inject = ['ApiSrv','toastr','UserSrv'];
+    RedditSrv.$inject = ['ApiSrv','toastr','UserSrv','AuthSrv'];
     
-    function RedditSrv(ApiSrv,toastr,UserSrv){
+    function RedditSrv(ApiSrv,toastr,UserSrv,AuthSrv){
         var ctrl = this;
-        //injectables
-        ctrl.ApiSrv = ApiSrv;
-        ctrl.UserSrv = UserSrv;
            
         //view variables
         ctrl.fullList=[];
         ctrl.subReddits = [];
         ctrl.hoverImage = '';
+        
         //local variables
         var limit = 10;
         var filter = 'hot';
@@ -40,7 +38,8 @@
         function activate() {
             var ctrl = this;
             ctrl.fullList = [];
-            ctrl.subReddits = JSON.parse(localStorage.subReddits);
+            //setcookie
+            ctrl.subReddits = AuthSrv.getCookie('subReddits');
             ctrl.updateReddits(0);
             
         }         
@@ -52,18 +51,20 @@
             for (var i=0;i<ctrl.subReddits.length;i++) {
                 if(ctrl.subReddits[i]===search){
                     searchUnique = false;
-                     toastr.error('You are already subcribed to that reddit', 'Error');	
+                    toastr.error('You are already subcribed to that reddit', 'Error');	
                 }
             }
             
             if (searchUnique) {
-                ApiSrv.getRequest(search,filter,limit)
+                ApiSrv.getReddits(search,filter,limit)
                 .then (function (data) {
                     if (data.data && !data.data.error) {
                         var temp = data.data.data.children;
                         ctrl.fullList.push(temp);
                         ctrl.subReddits.push(search);
-                        localStorage.subReddits = JSON.stringify(ctrl.subReddits);
+                       
+                        AuthSrv.setCookie('subReddits',ctrl.subReddits);
+                        //localStorage.subReddits = JSON.stringify(ctrl.subReddits);
                         UserSrv.updateUser(ctrl.subReddits);
                     } else {
                          toastr.error('Please enter a valid subreddit name. Remember no spaces allowed', 'Error');
@@ -78,6 +79,7 @@
             ctrl.fullList.splice(index,1);
             ctrl.subReddits.splice(index,1);
             UserSrv.updateUser(ctrl.subReddits);
+            //setcookie
             localStorage.subReddits = JSON.stringify(ctrl.subReddits);
         }
         
@@ -86,7 +88,7 @@
             ctrl.index = index;
             
             if (ctrl.subReddits[index]) {
-                ApiSrv.getRequest(ctrl.subReddits[ctrl.index],filter,limit)
+                ApiSrv.getReddits(ctrl.subReddits[ctrl.index],filter,limit)
                     .then (function(res) {
                         var temp = res.data.data.children;
                         

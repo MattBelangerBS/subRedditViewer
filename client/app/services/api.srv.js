@@ -11,14 +11,14 @@
         var BASEURL = "https://www.reddit.com/r/";
         
         var service = {
-            getRequest : getRequest,
+            getReddits : getReddits,
             getUsers : getUsers,
             updateUser:updateUser,
             checkUser:checkUser
         }
         return service;
         /////////////////////////////////
-        function getRequest(sub,filter,limit) {
+        function getReddits(sub,filter,limit) {
             return $http.get(BASEURL+sub+'/'+filter+''+'/.json?limit='+limit)
                 .then(getComplete)
                 .catch(getFail);

@@ -5,7 +5,7 @@
     	.constant('HOST_BASE_URL', 'http://localhost:8080')
         .config(config);
 
-        config.$inject = ['$stateProvider', '$httpProvider', '$urlRouterProvider'];
+        config.$inject = ['$stateProvider', '$httpProvider', '$urlRouterProvider']
         
         function config($stateProvider, $httpProvider, $urlRouterProvider) {
 
@@ -25,9 +25,9 @@
                 },
                resolve: {
                        
-                        auth:function($state,jwtHelper){
+                        auth:function($state,jwtHelper,AuthSrv){
                             try{
-                                jwtHelper.decodeToken(localStorage.authToken);
+                                jwtHelper.decodeToken(AuthSrv.getCookie('token'));
                             }
                             catch(err){
                                 var ctrl = this;
@@ -58,13 +58,15 @@
                 }
 			})
             
-            $httpProvider.interceptors.push(function(jwtHelper){
+            $httpProvider.interceptors.push(function(jwtHelper,AuthSrv){
 			return {
 				request:function(config){
                     if(config.url.indexOf('reddit')<0){
+                        var cookieToken = AuthSrv.getCookie('token');
+                        console.log(cookieToken);
                         
-                        if(localStorage.authToken !== 'undefined'){
-                            config.headers.authentication = localStorage.authToken;
+                        if(cookieToken !== 'undefined'){
+                            config.headers.authentication = cookieToken;
                         }
                     }
                     return config;
@@ -74,7 +76,7 @@
 					if(auth_token){
 						var decrypt_token = jwtHelper.decodeToken(auth_token);
 						if(decrypt_token.email){
-							localStorage.authToken = auth_token;
+                           AuthSrv.setCookie('token',auth_token);	
 						}
 						
 					}
