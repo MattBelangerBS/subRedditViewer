@@ -21,8 +21,10 @@
         //local variables
         var limit = 10;
         var filter = 'hot';
+        var refreshBool = true;
         
         //Exports
+        
          var service = {
             getReddit:getReddit,
             removeSub:removeSub,
@@ -33,16 +35,24 @@
             hoverImage: ctrl.hoverImage
         }
         return service;
-                
+        
+        
         /////////////////////////////
         function activate() {
             var ctrl = this;
             ctrl.fullList = [];
             //setcookie
-            ctrl.subReddits = AuthSrv.getCookie('subReddits');
+            if (typeof(AuthSrv.getCookie('subReddits'))==='string') {
+               ctrl.subReddits.push(AuthSrv.getCookie('subReddits')); 
+            } else {
+                 ctrl.subReddits = JSON.parse(AuthSrv.getCookie('subReddits'));
+            }
+            
             ctrl.updateReddits(0);
             
-        }         
+        }      
+        
+        
         
         function getReddit (search) {
             var ctrl = this;
@@ -82,11 +92,11 @@
             //setcookie
             localStorage.subReddits = JSON.stringify(ctrl.subReddits);
         }
-        
+                
         function updateReddits(index) {
             var ctrl = this;
             ctrl.index = index;
-            
+            console.log('updading...')
             if (ctrl.subReddits[index]) {
                 ApiSrv.getReddits(ctrl.subReddits[ctrl.index],filter,limit)
                     .then (function(res) {

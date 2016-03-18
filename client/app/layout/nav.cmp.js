@@ -39,8 +39,8 @@
             ctrl.RedditSrv.getReddit(search);
             ctrl.search = " ";
         }
-        function updateReddits(index) {
-            ctrl.RedditSrv.updateReddits(index);
+        function updateReddits() {
+            ctrl.RedditSrv.updateReddits(0);
         }
          function debug() {
             console.log(ctrl.RedditSrv.fullList);

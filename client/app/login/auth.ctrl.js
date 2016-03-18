@@ -5,9 +5,9 @@
 		.module('subReddit')
 		.controller('AuthCtrl',AuthCtrl);
 
-	AuthCtrl.$inject = ['$http','$state','toastr'];
+	AuthCtrl.$inject = ['$http','$state','toastr','AuthSrv'];
 
-	function AuthCtrl($http,$state,toastr){
+	function AuthCtrl($http,$state,toastr,AuthSrv){
 		var ctrl = this;
         ctrl.state = $state;
 		//buttons
@@ -60,9 +60,18 @@
                     return;
                 }
                 if(res.status==200){
-                    if(AuthSrv.getCookie('subReddits') !== res.data.user.reddits){
+                    var reddits = JSON.parse(res.data.user.reddits);
+                    console.log(reddits);
+                    var stringChk = AuthSrv.getCookie('subReddits');
+                    
+                    if(typeof(stringChk)==='string'){
+                        if(AuthSrv.getCookie('subReddits') !== reddits[0]){
+                            AuthSrv.setCookie('subReddits',res.data.user.reddits);
+                        }
+                    } else if(JSON.parse(AuthSrv.getCookie('subReddits')) !== reddits){
                         AuthSrv.setCookie('subReddits',res.data.user.reddits);
                     }
+                    
                     //localStorage.loginEmail = ctrl.email;
                     ctrl.auth_btn = res.data.msg;
                     ctrl.state.go('home');

@@ -33,7 +33,7 @@
          }    
          function clearCookies() {
              $cookies.remove('token');
-             $cokkies.remove('subreddits');
+             $cookies.remove('subreddits');
          }        
         
     }

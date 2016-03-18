@@ -35,7 +35,8 @@
        //init function calls
        activate();
        
-        
+        var myRefresh;
+        myRefresh = setInterval(refresh, 30000);
    
         //watches (watches service for subreddit changes)
         $scope.$watch("ctrl.RedditSrv.subReddits",
@@ -57,6 +58,11 @@
             }
                 
          }   
+         function refresh() {             
+                ctrl.RedditSrv.updateReddits(0);
+     
+         }   
+         
          
          function updateState() {          
              ctrl.fullList = ctrl.RedditSrv.fullList;
