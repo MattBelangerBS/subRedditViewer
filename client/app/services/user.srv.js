@@ -8,9 +8,9 @@
             
      
     
-    UserSrv.$inject = ['ApiSrv','toastr','$state'];
+    UserSrv.$inject = ['ApiSrv','toastr','$state','AuthSrv'];
     
-    function UserSrv(ApiSrv,toastr,$state){
+    function UserSrv(ApiSrv,toastr,$state,AuthSrv){
            
         //Exports
          var service = {
@@ -35,7 +35,8 @@
         function updateUser(search) {
             ApiSrv.updateUser(search).then(function(res){
                 if(res.data.success === false){
-                    localStorage.clear();
+                    AuthSrv.clearCookies();
+                    //localStorage.clear();
                     $state.go('auth');
                     
                 }

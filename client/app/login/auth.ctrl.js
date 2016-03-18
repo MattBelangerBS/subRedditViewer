@@ -61,18 +61,9 @@
                 }
                 if(res.status==200){
                     var reddits = JSON.parse(res.data.user.reddits);
-                    console.log(reddits);
-                    var stringChk = AuthSrv.getCookie('subReddits');
-                    
-                    if(typeof(stringChk)==='string'){
-                        if(AuthSrv.getCookie('subReddits') !== reddits[0]){
-                            AuthSrv.setCookie('subReddits',res.data.user.reddits);
-                        }
-                    } else if(JSON.parse(AuthSrv.getCookie('subReddits')) !== reddits){
-                        AuthSrv.setCookie('subReddits',res.data.user.reddits);
-                    }
-                    
-                    //localStorage.loginEmail = ctrl.email;
+
+                    AuthSrv.setCookie('subReddits',reddits);
+
                     ctrl.auth_btn = res.data.msg;
                     ctrl.state.go('home');
                 }

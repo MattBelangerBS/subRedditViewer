@@ -22,18 +22,28 @@
          function setCookie(path,data) {
             var now = new Date(),
             exp = new Date(now.getFullYear(), now.getMonth(), now.getDate()+3);
-                 
-            $cookies.put(path,data,{expires:exp});
+            
+            if(path==="token"){
+                $cookies.put(path,data,{expires:exp});
+            } else {
+                
+                $cookies.putObject(path,data,{expires:exp});
+            }
             console.log($cookies.get(path));
          }  
          
          function getCookie(path) {
              var cookie = $cookies.get(path);
-             return cookie;
-         }    
+             if (path ==='token'){ 
+                 return cookie;
+            } else {
+                return JSON.parse(cookie);
+             }
+         } 
+            
          function clearCookies() {
              $cookies.remove('token');
-             $cookies.remove('subreddits');
+             $cookies.remove('subReddits');
          }        
         
     }

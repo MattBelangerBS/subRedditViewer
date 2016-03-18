@@ -42,11 +42,9 @@
             var ctrl = this;
             ctrl.fullList = [];
             //setcookie
-            if (typeof(AuthSrv.getCookie('subReddits'))==='string') {
-               ctrl.subReddits.push(AuthSrv.getCookie('subReddits')); 
-            } else {
-                 ctrl.subReddits = JSON.parse(AuthSrv.getCookie('subReddits'));
-            }
+            console.log(AuthSrv.getCookie('subReddits'));
+            ctrl.subReddits = AuthSrv.getCookie('subReddits');
+            console.log(ctrl.subReddits);
             
             ctrl.updateReddits(0);
             
@@ -72,7 +70,7 @@
                         var temp = data.data.data.children;
                         ctrl.fullList.push(temp);
                         ctrl.subReddits.push(search);
-                       
+                       console.log(ctrl.subReddits);
                         AuthSrv.setCookie('subReddits',ctrl.subReddits);
                         //localStorage.subReddits = JSON.stringify(ctrl.subReddits);
                         UserSrv.updateUser(ctrl.subReddits);
@@ -90,13 +88,14 @@
             ctrl.subReddits.splice(index,1);
             UserSrv.updateUser(ctrl.subReddits);
             //setcookie
-            localStorage.subReddits = JSON.stringify(ctrl.subReddits);
+            console.log(ctrl.subReddits);
+            AuthSrv.setCookie('subReddits',ctrl.subReddits);
+            //localStorage.subReddits = JSON.stringify(ctrl.subReddits);
         }
                 
         function updateReddits(index) {
             var ctrl = this;
             ctrl.index = index;
-            console.log('updading...')
             if (ctrl.subReddits[index]) {
                 ApiSrv.getReddits(ctrl.subReddits[ctrl.index],filter,limit)
                     .then (function(res) {
