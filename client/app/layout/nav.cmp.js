@@ -13,10 +13,11 @@
             
        
 
-    NavCtrl.$inject = ['$state','$scope','RedditSrv','prompt','UserSrv','AuthSrv'];
+    NavCtrl.$inject = ['$state','$scope','RedditSrv','prompt','UserSrv','AuthSrv','$rootScope'];
        
-    function NavCtrl($state,$scope,RedditSrv,prompt,UserSrv,AuthSrv){
+    function NavCtrl($state,$scope,RedditSrv,prompt,UserSrv,AuthSrv,$rootScope){
         var ctrl = this;
+        console.log($rootScope.$$listeners);
         //injectable
         ctrl.RedditSrv = RedditSrv;
         ctrl.UserSrv = UserSrv;

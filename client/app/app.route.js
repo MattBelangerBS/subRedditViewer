@@ -24,7 +24,6 @@
                         }
                 },
                resolve: {
-                       
                         auth:function($state,jwtHelper,AuthSrv){
                             try{
                                 jwtHelper.decodeToken(AuthSrv.getCookie('token'));
@@ -33,7 +32,6 @@
                                 var ctrl = this;
                                 ctrl.$state.go('auth');
                             }
-
                         }
                     }
             })
@@ -63,8 +61,6 @@
 				request:function(config){
                     if(config.url.indexOf('reddit')<0){
                         var cookieToken = AuthSrv.getCookie('token');
-                        console.log(cookieToken);
-                        
                         if(cookieToken !== 'undefined'){
                             config.headers.authentication = cookieToken;
                         }

@@ -42,12 +42,8 @@
             var ctrl = this;
             ctrl.fullList = [];
             //setcookie
-            console.log(AuthSrv.getCookie('subReddits'));
-            ctrl.subReddits = AuthSrv.getCookie('subReddits');
-            console.log(ctrl.subReddits);
-            
+            ctrl.subReddits = AuthSrv.getCookie('subReddits');  
             ctrl.updateReddits(0);
-            
         }      
         
         
@@ -88,9 +84,7 @@
             ctrl.subReddits.splice(index,1);
             UserSrv.updateUser(ctrl.subReddits);
             //setcookie
-            console.log(ctrl.subReddits);
             AuthSrv.setCookie('subReddits',ctrl.subReddits);
-            //localStorage.subReddits = JSON.stringify(ctrl.subReddits);
         }
                 
         function updateReddits(index) {

@@ -13,15 +13,22 @@
     
     function Scroll ($window) {
         return function(scope, element, attrs) {
-            angular.element($window).bind("scroll", function() {
-                if (this.pageYOffset > this.lastScrollTop) {
-                    scope.slide = true;
-                } else {
-                    scope.slide = false;
-                }
-                this.lastScrollTop = this.pageYOffset;
-                scope.$apply();
-            });
+                    
+            angular.element($window).bind("scroll",scrollAction); 
+            
+            function scrollAction(){
+                    if (this.pageYOffset > this.lastScrollTop) {
+                        scope.slide = true;
+                    } else {
+                        scope.slide = false;
+                    }
+                    this.lastScrollTop = this.pageYOffset;
+                    scope.$apply();
+            }
+            
+            scope.$on('$destroy', function() {
+                angular.element($window).unbind("scroll", scrollAction);
+            })
         };
     };
     
