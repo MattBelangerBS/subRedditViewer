@@ -17,7 +17,6 @@
        
     function NavCtrl($state,$scope,RedditSrv,prompt,UserSrv,AuthSrv,$rootScope){
         var ctrl = this;
-        console.log($rootScope.$$listeners);
         //injectable
         ctrl.RedditSrv = RedditSrv;
         ctrl.UserSrv = UserSrv;
