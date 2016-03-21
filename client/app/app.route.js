@@ -9,7 +9,7 @@
         
         function config($stateProvider, $httpProvider, $urlRouterProvider) {
 
-            $urlRouterProvider.otherwise('/login');
+            $urlRouterProvider.otherwise('/home');
 
             $stateProvider
 
@@ -25,15 +25,26 @@
                 },
                resolve: {
                         auth:function($state,jwtHelper,AuthSrv){
-                            try{
-                                jwtHelper.decodeToken(AuthSrv.getCookie('token'));
-                            }
-                            catch(err){
-                                var ctrl = this;
-                                ctrl.$state.go('auth');
-                            }
+                            // try{
+                             //jwtHelper.decodeToken(AuthSrv.getCookie('token'));
+                            // }
+                            // catch(err){
+                            //     var ctrl = this;
+                            //     ctrl.$state.go('auth');
+                            // }
+                            //     var deferred = $q.defer();
+
+                            //     var $state = $injector.get('$state');
+                            //     if (jwtHelper.decodeToken(AuthSrv.getCookie('token'))) {
+                            //         $timeout(function(){$state.go('home');});
+                            //         deferred.resolve();
+                            //     } else {
+                            //         deferred.reject();
+ 
+                            //     }
+                            //     return deferred.promise;
+                             }
                         }
-                    }
             })
             .state('auth',{
 				url:'/login',

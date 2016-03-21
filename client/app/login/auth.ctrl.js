@@ -19,8 +19,6 @@
 		ctrl.authenticate = authenticate;
         ctrl.goToReg = goToReg;
 
-        //kick-forward
-       
 		function register(){
 			//check passwords
 			if(ctrl.password == ctrl.repassword){
@@ -67,10 +65,7 @@
                     ctrl.auth_btn = res.data.msg;
                     ctrl.state.go('home');
                 }
-                
-				
-                
-			})
+			});
 		}
 	}
 })();

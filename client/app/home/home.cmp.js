@@ -19,7 +19,6 @@
         ctrl.$uibModal = $uibModal;
         ctrl.RedditSrv = RedditSrv;
         ctrl.AuthSrv = AuthSrv;
-
         //view variables
         ctrl.search;
         ctrl.fullList=[];
@@ -51,9 +50,7 @@
         ////////////////////////////
         
          function activate() {             
-             if(AuthSrv.getCookie('subReddits')!== undefined){
-                 
-                //ctrl.subReddits = AuthSrv.getCookie('subReddits');
+             if(AuthSrv.getCookie('subReddits')!== undefined){ 
                 ctrl.RedditSrv.activate();
             }
                 
@@ -62,7 +59,6 @@
                 ctrl.RedditSrv.updateReddits(0);
      
          }   
-         
          
          function updateState() {          
              ctrl.fullList = ctrl.RedditSrv.fullList;

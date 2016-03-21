@@ -11,8 +11,6 @@
             templateUrl: 'app/layout/nav.html'
     });
             
-       
-
     NavCtrl.$inject = ['$state','$scope','RedditSrv','prompt','UserSrv','AuthSrv','$rootScope'];
        
     function NavCtrl($state,$scope,RedditSrv,prompt,UserSrv,AuthSrv,$rootScope){
@@ -24,8 +22,7 @@
         ctrl.prompt = prompt;
         //varaibles
         ctrl.search = "";
-        
-        
+            
         //expose
         ctrl.getReddit = getReddit;
         ctrl.updateReddits = updateReddits;
